@@ -1,0 +1,32 @@
+.btn {
+  height: 45px;
+  padding: 0 30px;
+  border-radius: 20px;
+  border: 0;
+  cursor: pointer;
+  color: $white;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  &__secondary {
+    background-color: transparent;
+    border: 1px solid $white;
+    &:hover {
+      border: 1px solid $green-h;
+      background-color: $green-h;
+    }
+    &:active {
+      border: 1px solid $green-h;
+      background-color: $green;
+    }
+  }
+  &__primary {
+    background-color: $green;
+    &:hover {
+      background-color: $green-h;
+    }
+    &:active {
+      background-color: $green;
+    }
+  }
+}

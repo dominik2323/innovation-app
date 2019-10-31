@@ -1,0 +1,14 @@
+.innovation-contents {
+  position: absolute;
+  height: 100%;
+  width: cols(5);
+  background-color: $light-gray;
+  // &:before {
+  //   content: '';
+  //   display: block;
+  //   width: calc((100vh - 60px) / 10);
+  //   height: calc(100vh - 60px);
+  //   left: calc((100vh - 60px) / -10);
+  //   background: url('/static/img/components/innovation/innovationEdgeLeft.svg');
+  // }
+}

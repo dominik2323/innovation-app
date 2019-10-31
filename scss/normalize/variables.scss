@@ -1,0 +1,17 @@
+$white: white;
+$black: black;
+
+$light-gray: #f3f3f3;
+$medium-gray: #63686b;
+$dark-gray: #4a4a4a;
+
+$green: #4ba82e;
+$green-h: #50b331;
+
+$light-blue: #7ec9f1;
+$medium-blue: #0090d7;
+$dark-blue: #004f76;
+
+@function dark-gray($opacity) {
+  @return rgba(74, 74, 74, $opacity);
+}
