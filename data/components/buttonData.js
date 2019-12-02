@@ -1,4 +1,7 @@
 export default {
-  discover: 'prozkoumat inovace',
-  about: 'o logistice škoda auto'
+  discover: "prozkoumat inovace",
+  moreInfo: "více informací",
+  lessInfo: "méně informací",
+  about: "O Logistice ŠKODA AUTO",
+  send: "odeslat"
 };

@@ -1,14 +1,22 @@
 .intro {
   width: calc(100vw + calc((100vh - 60px) / 10));
   position: absolute;
+  top: 0;
   height: 100%;
   &__bg {
     position: absolute;
     width: 100%;
     height: 100%;
     z-index: 0;
+    video {
+      width: 100vw;
+      // height: calc(100vh - 60px);
+      min-height: calc(100vh - 60px);
+      height: auto;
+      object-fit: cover;
+    }
     &:before {
-      content: '';
+      content: "";
       display: block;
       width: 100%;
       height: 100%;
@@ -16,9 +24,10 @@
       position: absolute;
     }
     &:after {
-      content: '';
+      content: "";
       display: block;
-      background: url('/static/img/components/intro/introEdge.svg');
+      background: url("/static/icons/introEdge.svg");
+      background-size: 100%;
       width: calc((100vh - 60px) / 5);
       height: calc(100vh - 60px);
       position: absolute;
@@ -29,17 +38,28 @@
   &__number {
     position: absolute;
     z-index: 1;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     svg {
+      width: cols(7);
+      height: auto;
       text {
-        stroke: $white;
-        fill: transparent;
-        font: 600 cols(10) 'skoda-next';
+        // text-anchor: middle;
       }
+    }
+    .cls-1 {
+      font-size: 220px;
+      stroke: #fff;
+      text-align: center;
+      stroke-width: 0.003em;
+      font-weight: 800;
+    }
+    .cls-1,
+    .cls-2 {
+      fill: none;
     }
   }
   &__content {
@@ -61,7 +81,50 @@
     &__about-btn {
       position: absolute;
       bottom: 30px;
-      right: calc(((100vh - 60px) / 5) + 30px);
+      right: calc(((100vh - 60px) / 10) + 30px);
+    }
+  }
+  @include phone-down {
+    width: 100vw;
+    &__number {
+      svg {
+        width: cols(15);
+      }
+    }
+    &__content {
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 50px;
+      padding-right: 15px;
+      padding-left: 15px;
+      h1 {
+        text-align: center;
+        line-height: 1.5em;
+      }
+      &__about-btn {
+        position: static;
+        margin-top: 20px;
+      }
+    }
+    &__bg {
+      &:after {
+        display: none;
+      }
+    }
+  }
+  @media screen and (max-height: 400px) {
+    &__content {
+      padding-right: 70px;
+      h1 {
+        font-size: 21px;
+      }
+      .btn {
+        height: 35px;
+      }
+      &__about-btn {
+        position: static;
+        margin-top: 10px;
+      }
     }
   }
 }

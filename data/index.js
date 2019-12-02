@@ -1,11 +1,9 @@
-import navbarData from './components/navbarData';
-import introData from './components/introData';
-import buttonData from './components/buttonData';
+import components from "./components";
+import innovations from "./innovations";
+import humans from "./humans";
 
 export default {
-  components: {
-    navbar: navbarData,
-    intro: introData,
-    button: buttonData
-  }
+  components: components,
+  innovations: innovations,
+  humans: humans
 };

@@ -1,0 +1,35 @@
+.innovation-ui__sidebar__content__detail__wrapper__download {
+  padding: 50px;
+  position: relative;
+  a {
+    display: flex;
+    align-items: center;
+    &:before {
+      content: "";
+      margin-right: 20px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-image: url("/static/icons/file.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: calc(100% - 0px);
+    position: absolute;
+    top: 15px;
+    left: 0;
+    background-color: $soft-gray;
+  }
+
+  @include phone-down {
+    padding: 30px;
+  }
+}

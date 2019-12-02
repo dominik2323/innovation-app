@@ -1,4 +1,5 @@
 export default {
-  posterSrc: 'introPoster.png',
+  posterSrc: 'introPoster.jpg',
+  loopSrc: 'introLoop.mp4',
   header: 'nejlepších inovací'
 };

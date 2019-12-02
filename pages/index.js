@@ -1,63 +1,37 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { useSelector, useDispatch } from "react-redux";
 
-import '../scss/index.scss';
-import data from '../data';
-import Intro from '../components/Intro';
-import Navbar from '../components/Navbar';
-import Innovation from '../components/Innovation';
-import View from '../components/View';
+import Intro from "../components/Intro";
+import View from "../components/View";
+import Header from "../components/Header";
+import Login from "../components/Login";
 
-export const DataContext = React.createContext();
+import { fetchData } from "../helpers/fetchData";
 
-const transition = {
-  duration: 30,
-  type: 'tween',
-  ease: 'easeInOut'
-};
+import { VARIANTS } from "../helpers/consts";
+import { DataContext } from "../helpers/dataContext";
 
-const variants = {
-  innovation: {
-    initial: { x: '100%', transition },
-    enter: { x: '0vw', transition },
-    exit: { x: '100%', transition }
-  },
-  intro: {
-    initial: { x: '-100%', transition },
-    enter: { x: '0vw', transition },
-    exit: { x: '-100%', transition }
-  }
-};
+import "../scss/index.scss";
 
-export default () => {
-  const [screen, setScreen] = React.useState('Intro');
-  const Screens = {
-    Intro: (
-      <Intro
-        key={`intro`}
-        initial={`initial`}
-        animate={`enter`}
-        exit={`exit`}
-        variants={variants.intro}
-        setScreen={screen => setScreen(screen)}
-      />
-    ),
-    Innovation: (
-      <Innovation
-        key={`innovation`}
-        initial={`initial`}
-        animate={`enter`}
-        exit={`exit`}
-        variants={variants.innovation}
-        setScreen={screen => setScreen(screen)}
-      />
-    )
-  };
-  return (
-    <DataContext.Provider value={data}>
-      <Navbar />
-      <View>
-        <AnimatePresence initial={false}>{Screens[screen]}</AnimatePresence>
-      </View>
-    </DataContext.Provider>
+const Index = ({ ...props }) => {
+  const dispatch = useDispatch();
+  const isUserLogged = useSelector(state => state.isUserLogged);
+  const { innovations } = React.useContext(DataContext);
+  return isUserLogged ? (
+    <View
+      variants={VARIANTS.PAGES.INTRO}
+      style={{ width: `calc(100vw + ((100vh - 60px) / 10))` }}
+    >
+      <Header descriptor={``} />
+      <Intro key={`Intro`} />
+    </View>
+  ) : (
+    <Login />
   );
 };
+
+Index.getInitialProps = async ({ req }) => {
+  const data = await fetchData(req);
+  return data;
+};
+
+export default Index;

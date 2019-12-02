@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'skoda-next';
+  font-family: "skoda-next";
   box-sizing: border-box;
 }
 
@@ -15,3 +15,23 @@ img {
   @return 100vw / 20 * $cols;
 }
 
+@mixin phone-down {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+@mixin tablet-por-down {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+@mixin tablet-lan-down {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin big-desktop-up {
+  @media (min-width: 1921px) {
+    @content;
+  }
+}

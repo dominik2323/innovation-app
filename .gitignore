@@ -3,3 +3,5 @@ public/
 .next/
 .env
 .env.build
+.dns
+*.pdf

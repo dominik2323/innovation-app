@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function useViewportDimensions() {
   const [dimensions, setDimensions] = React.useState({
@@ -15,8 +15,8 @@ export function useViewportDimensions() {
 
   React.useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return dimensions;

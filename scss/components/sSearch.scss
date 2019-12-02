@@ -1,0 +1,108 @@
+.navbar__search {
+  &__list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    width: 100%;
+    min-height: 50vh;
+    max-height: 800px;
+    background-color: $light-gray;
+    padding: cols(0.8) cols(1) cols(1);
+    .scrollbar-holder {
+      min-height: 50vh;
+    }
+    &__close {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: cols(0.8);
+      right: cols(1);
+      background-image: url("/static/icons/searchClose.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    h1 {
+      margin-bottom: 10px;
+      display: block;
+    }
+    p {
+      margin-bottom: cols(0.5);
+      color: $green;
+      font-size: 15px;
+      letter-spacing: 0.07em;
+    }
+    h3 {
+      cursor: pointer;
+      &:hover {
+        color: $green;
+      }
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+    img {
+      width: 150px;
+      height: auto;
+    }
+  }
+  input {
+    height: 40px;
+    border: 0;
+    font-size: 18px;
+    border-bottom: 2px solid $dark-gray;
+    transition: all 0.2s ease-in-out;
+    margin-right: 10px;
+    &:focus {
+      border-bottom: 2px solid $green;
+    }
+  }
+  @include tablet-por-down {
+    // height: calc(100vh - 60px);
+    // position: absolute;
+    // top: 60px;
+
+    // flex-shrink: 0;
+    position: relative;
+    width: 100%;
+    padding: 0 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    flex-shrink: 0;
+    align-items: center;
+    &__list {
+      flex-direction: column;
+      position: static;
+      padding: 0;
+      max-height: initial;
+      flex-shrink: 0;
+      h3 {
+        font-weight: 400;
+      }
+      &__close {
+        display: none;
+      }
+      h1,
+      p {
+        text-align: center;
+      }
+      h1 {
+        margin-top: 40px;
+      }
+    }
+    input {
+      background-color: $light-gray;
+      max-width: 300px;
+      text-align: center;
+      margin-right: 0;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}

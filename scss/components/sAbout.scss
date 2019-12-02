@@ -1,0 +1,128 @@
+.about {
+  height: calc(100vh - 60px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: cols(1);
+  background-color: $light-gray;
+  position: absolute;
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 cols(2);
+    &__director {
+      width: auto;
+      margin-right: cols(2);
+      img {
+        width: 250px;
+        height: 250px;
+        margin: auto;
+        display: block;
+        border-radius: 100%;
+        border: 1px solid $medium-gray;
+        margin-bottom: 30px;
+      }
+      &__name {
+        font-size: 24px;
+        letter-spacing: 0.05em;
+        font-weight: 400;
+        text-align: center;
+      }
+      &__position {
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.07em;
+        text-align: center;
+      }
+    }
+    &__quote {
+      width: 100%;
+      max-width: 850px;
+      height: 80%;
+      max-height: 850px;
+      display: flex;
+      p {
+        font-size: 21px;
+        letter-spacing: 0.04em;
+        line-height: 1.4em;
+        white-space: pre-wrap;
+        margin-right: 50px;
+        margin-bottom: 16px;
+        span {
+          white-space: pre-wrap;
+          line-height: 1.4em;
+          letter-spacing: 0.04em;
+          font-size: 21px;
+          color: $green;
+        }
+      }
+      // min-height: 500px;
+    }
+  }
+  @include tablet-lan-down {
+    padding: 50px;
+    &__content {
+      padding: 0;
+      &__director {
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
+  @include tablet-por-down {
+    // height: auto;
+    min-height: calc(100vh - 60px);
+    overflow-y: scroll;
+    &__content {
+      flex-direction: column;
+      height: auto;
+      align-items: flex-start;
+      &__director {
+        img {
+          margin-top: 60px;
+          margin-left: initial;
+          margin-right: initial;
+        }
+        p {
+          text-align: left;
+        }
+        margin-bottom: 60px;
+        margin-right: 0;
+      }
+      &__quote {
+        max-height: initial;
+        height: auto;
+        > div {
+          overflow-y: initial !important;
+        }
+        .scroll-content {
+          position: static !important;
+        }
+        p {
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+  @include phone-down {
+    padding: 30px;
+    &__content {
+      &__director {
+        &__name {
+          font-size: 21px;
+        }
+      }
+      &__quote {
+        p {
+          font-size: 16px;
+          letter-spacing: 0.05em;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

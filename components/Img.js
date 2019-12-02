@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const Img = ({ src, ...props }, ref) => {
-  return <img ref={ref} src={`/static/img${src}`} {...props} />;
+const Img = ({ src, handleLoad = () => null, ...props }, ref) => {
+  return <img ref={ref} onLoad={() => handleLoad()} src={src} {...props} />;
 };
 
 export default React.forwardRef(Img);

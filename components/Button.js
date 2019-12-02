@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Button = ({ handleClick, className, children, ...props }) => {
+const Button = ({
+  handleClick = () => null,
+  className,
+  children,
+  ...props
+}) => {
   return (
     <button
       className={`btn ${className}`}
