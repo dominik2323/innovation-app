@@ -1,0 +1,43 @@
+.innovation-ui__sidebar__content__detail__wrapper__download {
+  padding: 50px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  h3 {
+    flex-shrink: 0;
+    width: 100%;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    // flex-basis: calc(100% / 3);
+    &:before {
+      content: "";
+      margin-right: 20px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-image: url("/static/icons/file.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &:not(:last-child) {
+      margin-right: 50px;
+      margin-bottom: 10px;
+    }
+  }
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: calc(100% - 0px);
+    position: absolute;
+    top: 15px;
+    left: 0;
+    background-color: $soft-gray;
+  }
+
+  @include phone-down {
+    padding: 30px;
+  }
+}

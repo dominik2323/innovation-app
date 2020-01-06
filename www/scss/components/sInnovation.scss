@@ -1,0 +1,11 @@
+.innovation {
+  position: absolute;
+  // fixes wierd behavior of scrollIntoView, that shifted to the left side
+  // https://stackoverflow.com/a/53666966
+  // overflow: -moz-hidden-unscrollable;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  top: 0;
+  background-color: $light-gray;
+}

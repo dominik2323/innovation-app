@@ -1,0 +1,36 @@
+.innovation-ui__sidebar__content__detail__wrapper__authors {
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+  h3 {
+    margin-bottom: 0;
+  }
+  &__list {
+    display: flex;
+    margin: 0 -30px;
+    flex-wrap: wrap;
+    .human {
+      min-width: 330px;
+      margin-top: 40px;
+      flex-grow: 1;
+      width: 50%;
+      padding: 0 30px;
+    }
+  }
+  @include tablet-lan-down {
+    &__list {
+      .human {
+        width: 100%;
+      }
+    }
+  }
+
+  @include phone-down {
+    &__list {
+      .human {
+        min-width: auto;
+      }
+    }
+    padding: 30px;
+  }
+}

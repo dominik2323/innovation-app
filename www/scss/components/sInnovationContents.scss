@@ -1,0 +1,139 @@
+.innovation-contents {
+  position: absolute;
+  height: 100%;
+  width: cols(9);
+  background-color: $light-gray;
+  padding: cols(1) cols(1) cols(1) cols(1);
+  display: flex;
+  flex-shrink: 0;
+  z-index: 1;
+  @include for-ie {
+    z-index: 4;
+  }
+  flex-direction: column;
+  &:after {
+    content: '';
+    display: block;
+    width: calc((100vh - 60px) / 5);
+    height: calc(100%);
+    position: absolute;
+    top: 0;
+    right: calc((100vh - 60px - 10px) / -5);
+    background: url('/static/icons/innovationContentsEdge.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__contents {
+    margin-top: cols(1);
+    // flex-grow: 1;
+    height: 100%;
+    display: flex;
+    &__item {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      padding: 20px 0;
+      position: relative;
+      &:after {
+        content: '';
+        flex-shrink: 0;
+        display: none;
+        width: 50px;
+        height: 31px;
+        background-image: url('/static/icons/contentArrow.svg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        margin-left: auto;
+        position: absolute;
+        right: 20px;
+        @include for-ie {
+          // position: static;
+          top: calc(50% - 15px);
+        }
+      }
+      &.hover {
+        h2,
+        span {
+          color: $green-h;
+        }
+        &:after {
+          display: block;
+        }
+      }
+      span {
+        font-size: 16px;
+        font-weight: 600;
+        color: $green;
+        margin: 0 cols(0.5);
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.3em;
+        min-height: 31px;
+        letter-spacing: 0.03em;
+        color: $dark-gray;
+        margin-right: 50px;
+      }
+    }
+  }
+  @include tablet-lan-down {
+    width: 100vw;
+    padding: 50px;
+    overflow-y: auto;
+
+    &:after {
+      display: none;
+    }
+    &__contents {
+      &__item {
+        padding: 15px 0;
+        h2 {
+          font-size: 18px;
+        }
+        span {
+          margin-left: 0;
+          margin-right: 40px;
+        }
+        &.hover::after {
+          display: none;
+        }
+      }
+    }
+  }
+  @include phone-down {
+    padding: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 50px 0 20px;
+      h1 {
+        margin-bottom: 15px;
+      }
+    }
+    &__contents {
+      padding-bottom: 50px;
+      .scrollbar-holder {
+        overflow-y: initial;
+      }
+      > div {
+        // min-height: 60vh !important;
+        .scroll-content {
+          position: static !important;
+        }
+      }
+      &__item {
+        h2 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

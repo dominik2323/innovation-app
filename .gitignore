@@ -1,7 +1,3 @@
-node_modules/
-public/
-.next/
-.env
-.env.build
-.dns
-*.pdf
+*/node_modules/
+www/public/
+www/.next/
