@@ -4,6 +4,9 @@
   "description": "Innovation brochure",
   "browserslist": "> 0.25%, not dead",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
