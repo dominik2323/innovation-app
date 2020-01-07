@@ -5,7 +5,6 @@ import InnovationContents from './InnovationContents';
 import InnovationBg from './InnovationBg';
 import InnovationUi from './InnovationUi';
 import { useViewportDimensions } from '../hooks/useViewportDimensions';
-import { VH, VW } from '../helpers/consts';
 
 const transition = {
   type: 'spring',
@@ -14,37 +13,40 @@ const transition = {
 };
 
 const variants = {
-  innovationContents: w => ({
-    show: { x: `${0}px`, transition },
-    hide: {
-      x: w <= 992 ? VW() : `${VW(-0.5) - (VH() - 60) / 2}px`,
+  innovationContents: {
+    show: ({ w }) => ({ x: 0, transition }),
+    hide: ({ w, h }) => ({
+      x: w <= 1200 ? -1 * w : w * -0.5 - (h - 60) / 2,
       transition,
-    },
-  }),
+    }),
+  },
   innovationBg: {
-    shrink: { width: `${(100 / 20) * 11}vw`, transition },
-    grow: {
-      width: VW(),
+    shrink: ({ w }) => ({ width: (w / 20) * 11, transition }),
+    grow: ({ w }) => ({
+      width: w,
       transition,
-    },
+    }),
   },
 };
 
 const Innovation = () => {
   const { activeInnovationId } = useSelector(state => state);
-  const { w } = useViewportDimensions();
+  const { w, h } = useViewportDimensions();
   return (
     <div className={`innovation`}>
       <InnovationContents
+        key={`innovationContents_${w}_${h}`}
         initial={false}
-        variants={variants.innovationContents(w)}
+        variants={variants.innovationContents}
+        custom={{ w, h }}
         animate={activeInnovationId.length !== 0 ? `hide` : `show`}
       />
       <InnovationUi />
       <InnovationBg
-        key={`innovationBg${w}`}
+        key={`innovationBg_${w}_${h}`}
         initial={false}
         variants={variants.innovationBg}
+        custom={{ w, h }}
         animate={activeInnovationId.length !== 0 ? `grow` : `shrink`}
       />
     </div>

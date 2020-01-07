@@ -4,6 +4,12 @@
   height: calc(100vh - 60px);
   right: 0;
   // z-index: 2;
+  @include for-ie {
+    > img {
+      // height: 100%;
+      height: auto;
+    }
+  }
   &__slideshow {
     position: absolute;
     display: flex;

@@ -63,9 +63,9 @@ const InnovationBg = ({ ...props }) => {
     <motion.div
       id={`innovation-bg`}
       className={`innovation-bg`}
-      {...props}
       ref={ref}
-      {...bind()}>
+      {...bind()}
+      {...props}>
       {activeInnovationId.length !== 0 ? (
         <motion.div
           className={`innovation-bg__slideshow`}

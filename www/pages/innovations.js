@@ -13,6 +13,7 @@ import { setActiveInnovationId } from '../store/actions';
 import { VARIANTS } from '../helpers/consts';
 import { selectInnovationById } from '../helpers/functions';
 import { DataContext } from '../helpers/dataContext';
+import { useViewportDimensions } from '../hooks/useViewportDimensions';
 
 import '../scss/index.scss';
 
@@ -22,6 +23,7 @@ const Innovations = () => {
   const { innovations } = React.useContext(DataContext);
   const router = useRouter();
   const { id } = router.query;
+  const { w } = useViewportDimensions();
 
   React.useEffect(() => {
     if (id !== undefined) {
@@ -34,7 +36,8 @@ const Innovations = () => {
   return (
     <View
       variants={VARIANTS.PAGES.INNOVATION}
-      onAnimationStart={() => console.log('innovations-loaded')}>
+      custom={{ w }}
+      style={{ width: w }}>
       <Header
         descriptor={`Inovace${
           activeInnovationId.length !== 0

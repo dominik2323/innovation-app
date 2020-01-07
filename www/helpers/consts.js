@@ -42,14 +42,23 @@ export const VARIANTS = {
       },
     },
     INTRO: {
-      INITIAL: { x: VW(-1), transition },
-      ENTER: { x: 0, transition },
-      EXIT: { x: VW(-1), transition },
+      INITIAL: ({ w }) => ({
+        x: `-100vw`,
+        transition,
+      }),
+      ENTER: { x: `0vw`, transition },
+      EXIT: ({ w }) => ({
+        x: `-100vw`,
+        transition,
+      }),
     },
     INNOVATION: {
-      INITIAL: { x: VW(1), transition },
-      ENTER: { x: 0, transition },
-      EXIT: { x: 0, transition },
+      INITIAL: ({ w }) => ({
+        x: `100vw`,
+        transition,
+      }),
+      ENTER: { x: `0vw`, transition },
+      EXIT: { x: `0vw`, transition },
     },
   },
 };
