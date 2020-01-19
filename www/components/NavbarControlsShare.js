@@ -1,33 +1,23 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
-import Img from "./Img";
-import Popup from "./Popup";
+import React from 'react';
+import Img from './Img';
+import Popup from './Popup';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const NavbarControlsShare = () => {
   const [showCopyPopup, toggleCopyPopup] = React.useState(false);
 
-  const copyToClipboard = str => {
-    const el = document.createElement("textarea");
-    el.value = str;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-  };
-
   return (
     <React.Fragment>
-      <div
-        className={`navbar__controls__item`}
-        onClick={() => {
-          copyToClipboard(window.location.href);
+      <CopyToClipboard
+        onCopy={() => {
           toggleCopyPopup(true);
         }}
-      >
-        <Img src={`/static/icons/share.svg`} />
-        <span className={`navbar__controls__item__label`}>Sdílet</span>
-      </div>
+        text={window.location.href}>
+        <div className={`navbar__controls__item`}>
+          <Img src={`/static/icons/share.svg`} />
+          <span className={`navbar__controls__item__label`}>Sdílet</span>
+        </div>
+      </CopyToClipboard>
       <Popup
         msg={`Odkaz zkopírován do schránky`}
         show={showCopyPopup}

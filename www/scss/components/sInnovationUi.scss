@@ -1,8 +1,4 @@
 .innovation-ui {
-  // position: absolute;
-  // width: 100vw;
-  // height: calc(100vh - 60px);
-  // background-color: transparent;
   z-index: 3;
   @include for-ie {
     position: relative;

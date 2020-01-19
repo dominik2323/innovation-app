@@ -1,14 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
+import { useGesture } from 'react-use-gesture';
 
 import { DataContext } from '../helpers/dataContext';
 import Img from './Img';
 import { selectInnovationById } from '../helpers/functions';
 import InnovationBgVideo from './InnovationBgVideo';
 import InnovationUiPlaybtn from './InnovationUiPlaybtn';
-import { useGesture } from 'react-use-gesture';
-import { useViewportDimensions } from '../hooks/useViewportDimensions';
 
 import {
   setCurrentSlideshowIndex,
@@ -22,7 +21,6 @@ const InnovationBg = ({ ...props }) => {
   const { innovations } = React.useContext(DataContext);
   const dispatch = useDispatch();
   const ref = React.useRef(null);
-  const { h } = useViewportDimensions();
   const {
     activeInnovationId,
     hoverInnovationId,
@@ -71,13 +69,16 @@ const InnovationBg = ({ ...props }) => {
           className={`innovation-bg__slideshow`}
           initial={false}
           animate={{
-            y: (h - 60) * currentSlideshowIndex * -1,
+            y: (window.innerHeight - 60) * currentSlideshowIndex * -1,
           }}
           transition={{ mass: 1 }}>
           {slideshow.map((slide, i) => {
             if (slide.vimeoid !== null) {
               return (
-                <div key={i} className={`innovation-bg__slideshow__video`}>
+                <div
+                  key={i}
+                  className={`innovation-bg__slideshow__video`}
+                  style={{ height: `calc(${window.innerHeight}px - 60px)` }}>
                   {!playInnovationVideo && (
                     <React.Fragment>
                       <InnovationUiPlaybtn />
@@ -91,7 +92,10 @@ const InnovationBg = ({ ...props }) => {
               );
             } else {
               return (
-                <div className={`innovation-bg__slideshow__image`} key={i}>
+                <div
+                  className={`innovation-bg__slideshow__image`}
+                  key={i}
+                  style={{ height: `calc(${window.innerHeight}px - 60px)` }}>
                   <Img src={slide.img.url} />
                 </div>
               );

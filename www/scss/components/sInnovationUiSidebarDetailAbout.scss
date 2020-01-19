@@ -1,8 +1,11 @@
 .innovation-ui__sidebar__content__detail__wrapper__about {
   position: relative;
   padding: 35px 50px 0;
+  @include for-ie {
+    height: 100%;
+  }
   &:after {
-    content: "";
+    content: '';
     display: block;
     height: 2px;
     width: calc(100% - 15px);

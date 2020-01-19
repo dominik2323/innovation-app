@@ -17,7 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-    "@react-pdf/renderer": "^1.6.8",
     "@vimeo/player": "^2.10.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
@@ -42,18 +41,17 @@
     "prismic-javascript": "^2.1.1",
     "prismic-reactjs": "^1.1.2",
     "react": "^16.10.2",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-countup": "^4.2.2",
     "react-custom-scrollbars": "^4.2.1",
     "react-div-100vh": "^0.3.4",
     "react-dom": "^16.10.2",
     "react-intersection-observer": "^8.25.1",
-    "react-jsx-parser": "^1.21.0",
     "react-redux": "^7.1.1",
     "react-scrollbars-custom": "^4.0.21",
     "react-use-gesture": "^6.0.14",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "video-react": "^0.14.1",
     "xmlhttprequest": "^1.8.0"
   }
 }

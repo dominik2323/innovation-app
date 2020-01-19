@@ -20,24 +20,21 @@
       overflow: hidden;
     }
     &__image {
-      height: calc(100vh - 60px);
+      // height: calc(100vh - 60px);
       width: 100%;
-      img {
-        @include for-ie {
+      @include for-ie {
+        img {
           height: auto;
         }
       }
     }
     &__video {
-      height: calc(100vh - 60px);
-      width: 100vw;
+      // height: calc(100vh - 60px);
+      width: 100%;
       position: relative;
-      overflow: hidden;
+      overflow-y: hidden;
       img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
+        object-fit: cover;
       }
       @include for-ie {
         display: flex;
@@ -58,7 +55,7 @@
         }
         iframe {
           width: 100vw;
-          height: calc(100vh - 60px);
+          height: 100%;
           // min-height: calc(100vh - 60px);
           // min-width: 100vw;
         }

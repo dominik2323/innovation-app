@@ -4,7 +4,6 @@ import Header from '../components/Header';
 
 import { VARIANTS } from '../helpers/consts';
 
-import { fetchData } from '../helpers/fetchData';
 import '../scss/index.scss';
 
 const About = () => (

@@ -45,7 +45,7 @@
       left: calc((100vw / 2) - (50px / 2));
     }
   }
-  @media screen and (max-height: 500px) {
+  @media screen and (max-height: 400px) {
     $slider-height: 100px;
     &__slider {
       top: calc((100%) / 2 - (#{$slider-height} / 2));
