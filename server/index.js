@@ -49,12 +49,13 @@ server.get('/api/innovations', async (req, res) => {
   if (includesUid(req.query)) {
     data = await getApi.query(
       // 3d-realita-pro-zapracovani-zamestnancu-ckd-centra
-      Prismic.Predicates.at('my.innovations.uid', req.query.uid)
+      Prismic.Predicates.at('my.innovations.uid', req.query.uid),
+      { lang: 'de-de' }
     );
   } else {
     data = await getApi.query(
       Prismic.Predicates.at('document.type', 'innovations'),
-      { pageSize: 1000 }
+      { lang: 'de-de', pageSize: 1000 }
     );
   }
 

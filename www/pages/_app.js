@@ -21,6 +21,7 @@ class MyApp extends App {
   }
   render() {
     const { Component, pageProps, store, router, data } = this.props;
+    console.log(data.innovations.results);
     return (
       <Provider store={store}>
         <Div100vh

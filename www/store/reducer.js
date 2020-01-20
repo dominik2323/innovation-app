@@ -20,7 +20,7 @@ const initialState = {
   currentSlideshowIndex: 0,
   showSidebar: `hide`,
   playInnovationVideo: false,
-  isUserLogged: false,
+  isUserLogged: true,
   showNavbarSearch: false,
   showNavbarDownload: false,
   areAuthorsVisible: false,
