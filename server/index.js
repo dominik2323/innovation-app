@@ -21,7 +21,7 @@ server.get('/api/humans', async (req, res) => {
 
   const data = await getApi.query(
     Prismic.Predicates.at('document.type', 'humans'),
-    { pageSize: 1000 }
+    { pageSize: 1000, lang: 'cs-cz' }
   );
   res.setHeader('Content-Type', 'application/json');
   res.status(200);
@@ -34,7 +34,7 @@ server.get('/api/about', async (req, res) => {
 
   const data = await getApi.query(
     Prismic.Predicates.at('document.type', 'about'),
-    { pageSize: 1000 }
+    { pageSize: 1000, lang: 'cs-cz' }
   );
   res.setHeader('Content-Type', 'application/json');
   res.status(200);
@@ -49,12 +49,15 @@ server.get('/api/innovations', async (req, res) => {
   if (includesUid(req.query)) {
     data = await getApi.query(
       // 3d-realita-pro-zapracovani-zamestnancu-ckd-centra
-      Prismic.Predicates.at('my.innovations.uid', req.query.uid)
+      Prismic.Predicates.at('my.innovations.uid', req.query.uid),
+      {
+        lang: 'cs-cz',
+      }
     );
   } else {
     data = await getApi.query(
       Prismic.Predicates.at('document.type', 'innovations'),
-      { pageSize: 1000 }
+      { pageSize: 1000, lang: 'cs-cz' }
     );
   }
 
