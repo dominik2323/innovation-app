@@ -1,20 +1,21 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
-import Img from "./Img";
-import NavbarControlsShare from "./NavbarControlsShare";
-import NavbarControlsSearch from "./NavbarControlsSearch";
-import NavbarControlsDownload from "./NavbarControlsDownload";
-import Popup from "./Popup";
-import Router from "next/router";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
+import Img from './Img';
+import NavbarControlsShare from './NavbarControlsShare';
+import NavbarControlsSearch from './NavbarControlsSearch';
+import NavbarControlsDownload from './NavbarControlsDownload';
+import NavbarControlsLang from './NavbarControlsLang';
+import Popup from './Popup';
+import Router from 'next/router';
 import {
   toggleInnovationVideo,
   setCurrentSlideshowIndex,
   toggleSidebar,
   toggleNavbarSearch,
   toggleNavbarDownload,
-  togglePhoneMenu
-} from "../store/actions";
+  togglePhoneMenu,
+} from '../store/actions';
 
 const NavbarControls = ({ controlsVariants, showControls }) => {
   const { showNavbarDownload, showPhoneMenu } = useSelector(state => state);
@@ -45,6 +46,7 @@ const NavbarControls = ({ controlsVariants, showControls }) => {
           </span>
         </div>
       )}
+      <NavbarControlsLang />
     </motion.div>
   );
 };

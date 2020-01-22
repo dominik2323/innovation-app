@@ -1,15 +1,15 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import Router from "next/router";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Router from 'next/router';
 
-import Img from "./Img";
-import IntroNumber from "./IntroNumber";
-import IntroContent from "./IntroContent";
-import IntroBg from "./IntroBg";
-import Button from "./Button";
+import Img from './Img';
+import IntroNumber from './IntroNumber';
+import IntroContent from './IntroContent';
+import IntroBg from './IntroBg';
+import Button from './Button';
 
-import { DataContext } from "../helpers/dataContext";
-import { setCurrentSlideshowIndex } from "../store/actions";
+import { DataContext } from '../helpers/dataContext';
+import { setCurrentSlideshowIndex } from '../store/actions';
 
 const Intro = ({ setScreen, ...props }) => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Intro = ({ setScreen, ...props }) => {
           handleClick={() => {
             toggleIntro(false);
             dispatch(setCurrentSlideshowIndex(0));
-            Router.push("/innovations");
+            Router.push(`/[lang]/innovations`, `/cs/innovations`);
           }}
           className={`btn__primary`}
         >
@@ -36,7 +36,7 @@ const Intro = ({ setScreen, ...props }) => {
         <Button
           handleClick={() => {
             toggleIntro(false);
-            Router.push("/about");
+            Router.push('/about');
           }}
           className={`btn__secondary intro__content__about-btn`}
         >

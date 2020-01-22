@@ -2,20 +2,20 @@
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchData } from '../helpers/fetchData';
+import { fetchData } from '../../helpers/fetchData';
 // import { withRedux } from "../helpers/withRedux";
 
-import InnovationPage from '../components/Innovation';
-import View from '../components/View';
-import Header from '../components/Header';
-import { setActiveInnovationId } from '../store/actions';
+import InnovationPage from '../../components/Innovation';
+import View from '../../components/View';
+import Header from '../../components/Header';
+import { setActiveInnovationId } from '../../store/actions';
 
-import { VARIANTS } from '../helpers/consts';
-import { selectInnovationById } from '../helpers/functions';
-import { DataContext } from '../helpers/dataContext';
-import { useViewportDimensions } from '../hooks/useViewportDimensions';
+import { VARIANTS } from '../../helpers/consts';
+import { selectInnovationById } from '../../helpers/functions';
+import { DataContext } from '../../helpers/dataContext';
+import { useViewportDimensions } from '../../hooks/useViewportDimensions';
 
-import '../scss/index.scss';
+import '../../scss/index.scss';
 
 const Innovations = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,8 @@ const Innovations = () => {
     <View
       variants={VARIANTS.PAGES.INNOVATION}
       custom={{ w }}
-      style={{ width: w }}>
+      style={{ width: w }}
+    >
       <Header
         descriptor={`Inovace${
           activeInnovationId.length !== 0

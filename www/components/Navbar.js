@@ -28,53 +28,55 @@ const Navbar = () => {
     hide: { opacity: 0, transitionEnd: { display: `none` } },
   };
 
-  const showControlsInPages = [
-    {
-      url: id => '/about',
-      showToggler: false,
-      showControls: {
-        share: false,
-        download: false,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => '/innovations',
-      showToggler: false,
-      showControls: {
-        share: true,
-        download: false,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => `/innovations?id=${id}`,
-      showToggler: true,
-      showControls: {
-        share: true,
-        download: true,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => '/',
-      showToggler: false,
-      showControls: {
-        share: false,
-        download: false,
-        contents: isUserLogged ? true : false,
-        search: isUserLogged ? true : false,
-      },
-    },
-  ];
+  // const showControlsInPages = [
+  //   {
+  //     url: () => '/about',
+  //     showToggler: false,
+  //     showControls: {
+  //       share: false,
+  //       download: false,
+  //       contents: true,
+  //       search: true,
+  //     },
+  //   },
+  //   {
+  //     url: () => '/innovations',
+  //     showToggler: false,
+  //     showControls: {
+  //       share: true,
+  //       download: false,
+  //       contents: true,
+  //       search: true,
+  //     },
+  //   },
+  //   {
+  //     url: id => `/innovations?id=${id}`,
+  //     showToggler: true,
+  //     showControls: {
+  //       share: true,
+  //       download: true,
+  //       contents: true,
+  //       search: true,
+  //     },
+  //   },
+  //   {
+  //     url: () => '/',
+  //     showToggler: false,
+  //     showControls: {
+  //       share: false,
+  //       download: false,
+  //       contents: isUserLogged ? true : false,
+  //       search: isUserLogged ? true : false,
+  //     },
+  //   },
+  // ];
 
-  const { showControls, showToggler } = showControlsInPages.find(page => {
-    return page.url(query.id) === asPath;
-  });
-
+  // const { showControls, showToggler } = showControlsInPages.find(page => {
+  //   return page.url(query.id) === asPath;
+  // });
+  const showControls = false;
+  const showToggler = false;
+  console.log(router);
   return (
     <nav className={`navbar`}>
       <NavbarBrand logo={logo} />
@@ -90,7 +92,8 @@ const Navbar = () => {
         <motion.div
           initial={false}
           className={`navbar__burger`}
-          onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}>
+          onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}
+        >
           <Img className={``} src={`/static/icons/burger.svg`} />
         </motion.div>
       )}

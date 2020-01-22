@@ -16,12 +16,31 @@ const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 
 class MyApp extends App {
   static async getInitialProps({ ctx }) {
-    const data = await fetchData(ctx.req);
-    return { data };
+    /*
+     * if user comes to / or nonexisting path then redirect him
+     * to localized page based on his headers
+     */
+    const appLangs = ['cs', 'en', 'de'];
+    const defaultLang = `en`;
+
+    if (
+      ctx.req.url === '/' ||
+      !appLangs.includes(ctx.req.url.split('/').pop())
+    ) {
+      const regex = /([a-z]{2})/g;
+      const browserLangs = ctx.req.headers['accept-language'].match(regex);
+      const bestMatch =
+        appLangs.find(lang => browserLangs.includes(lang)) || defaultLang;
+
+      ctx.res.writeHead(302, { Location: bestMatch });
+      ctx.res.end();
+    } else {
+      const data = await fetchData(ctx.req);
+      return { data };
+    }
   }
   render() {
     const { Component, pageProps, store, router, data } = this.props;
-    console.log(data.innovations.results);
     return (
       <Provider store={store}>
         <Div100vh
@@ -31,11 +50,13 @@ class MyApp extends App {
             width: `100vw`,
             height: `100rvh`,
             overflow: `hidden`,
-          }}>
+          }}
+        >
           <DataContextProvider
             innovations={data.innovations}
             humans={data.humans}
-            about={data.about}>
+            about={data.about}
+          >
             <Navbar router={router} />
             <AnimatePresence initial={false}>
               <Component {...pageProps} key={router.pathname} />
