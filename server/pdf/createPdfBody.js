@@ -8,8 +8,9 @@ const {
   toMm,
   addNewPage,
 } = require('./helpers/index.js');
+const strings = require('../../www/data/components/index');
 
-module.exports = async (doc, data) => {
+module.exports = async (doc, data, lang) => {
   const {
     innovationname,
     perex,
@@ -37,8 +38,8 @@ module.exports = async (doc, data) => {
     .moveDown(2);
 
   // /*    bullets    */
-  Bullets(doc, `Motivace`, motivation);
-  Bullets(doc, `Benefity`, benefits);
+  Bullets(doc, strings[lang].sidebarMotivation, motivation);
+  Bullets(doc, strings[lang].sidebarBenefits, benefits);
 
   // /*    aboutText    */
   const promiseAbout = about.map(item => {
@@ -80,7 +81,7 @@ module.exports = async (doc, data) => {
   const enhancedAuthors = authorsData.map(
     ({ name, phone, email, img, isGarant }, i) => async () => {
       addNewPage(doc, toMm(20), doc.y);
-      i === 0 && (doc.moveDown(1), Header(doc, `Autoři`));
+      i === 0 && (doc.moveDown(1), Header(doc, strings[lang].authors));
       doc
         .image(await getImageAsBuffer(img.url), toMm(15), doc.y, {
           fit: [toMm(20), toMm(20)],
@@ -89,7 +90,9 @@ module.exports = async (doc, data) => {
         .font(fontPath(`Regular`))
         .text(
           `${name}\n${
-            isGarant ? `Garant projektu` : `Autor projektu`
+            isGarant
+              ? strings[lang].authorsGarantOfProject
+              : strings[lang].authorsAuthorOfProject
           }\n${email}\n${phone}`,
           toMm(40),
           doc.y - toMm(16)
@@ -106,7 +109,7 @@ module.exports = async (doc, data) => {
 
     return async () => {
       addNewPage(doc, (height / width) * toMm(180), doc.y);
-      i === 0 ? Header(doc, `Fotografie`) : null;
+      i === 0 ? Header(doc, strings[lang].photos) : null;
       doc
         .image(await getImageAsBuffer(img.img.url), toMm(15), doc.y, {
           width: toMm(180),

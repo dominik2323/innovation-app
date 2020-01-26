@@ -4,8 +4,6 @@ import Header from '../../components/Header';
 
 import { VARIANTS } from '../../helpers/consts';
 
-import '../../scss/index.scss';
-
 const About = () => (
   <View variants={VARIANTS.PAGES.ABOUT}>
     <Header descriptor={`O logistice Škoda Auto`} />

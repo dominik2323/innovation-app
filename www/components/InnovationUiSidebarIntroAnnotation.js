@@ -1,11 +1,11 @@
-import React from "react";
-import { DataContext } from "../helpers/dataContext";
-import { useSelector, useDispatch } from "react-redux";
-import Link from "./Link";
-import Button from "./Button";
-import { selectInnovationById } from "../helpers/functions";
-import { useViewportDimensions } from "../hooks/useViewportDimensions";
-import { toggleSidebar } from "../store/actions";
+import React from 'react';
+import { DataContext } from '../helpers/dataContext';
+import { useSelector, useDispatch } from 'react-redux';
+import Link from './Link';
+import Button from './Button';
+import { selectInnovationById } from '../helpers/functions';
+import { useViewportDimensions } from '../hooks/useViewportDimensions';
+import { toggleSidebar } from '../store/actions';
 
 const InnovationUiSidebarIntroAnnotation = () => {
   const { innovations, components } = React.useContext(DataContext);
@@ -14,7 +14,7 @@ const InnovationUiSidebarIntroAnnotation = () => {
   );
   const dispatch = useDispatch();
   const { w } = useViewportDimensions();
-  const { lessInfo, moreInfo } = components.button;
+  const { buttonLessInfo, buttonMoreInfo, contactToAuthors } = components;
   const { innovationname, perex } = selectInnovationById(
     innovations,
     activeInnovationId
@@ -44,7 +44,7 @@ const InnovationUiSidebarIntroAnnotation = () => {
             dispatch(toggleSidebar(showSidebar === `half` ? `show` : `half`))
           }
         >
-          {showSidebar === `show` ? lessInfo : moreInfo}
+          {showSidebar === `show` ? buttonLessInfo : buttonMoreInfo}
         </Button>
         <Link
           className={areAuthorsVisible ? `disable` : ``}
@@ -52,7 +52,9 @@ const InnovationUiSidebarIntroAnnotation = () => {
             dispatch(toggleSidebar(`show`));
             scrollToAuthors();
           }}
-        >{`Kontakt na autory`}</Link>
+        >
+          {contactToAuthors}
+        </Link>
       </div>
     </div>
   );

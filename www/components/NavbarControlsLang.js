@@ -1,16 +1,20 @@
 import React from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 
-const langs = [
-  { id: 'cs', name: 'CZ' },
-  { id: 'de', name: 'DE' },
-  { id: 'en', name: 'EN' },
-];
-const activeLang = 'cs';
+import { appLangs } from '../helpers/consts';
+
+const langNames = {
+  cs: 'CZ',
+  en: 'EN',
+  de: 'DE',
+};
 
 const NavbarControlsLang = () => {
   const [showDropdown, toggleDropdown] = React.useState(false);
-  const inactiveLangs = langs.filter(lang => lang.id !== activeLang);
+  const langKeys = Object.keys(appLangs);
+  const router = useRouter();
+  const inactiveLangs = langKeys.filter(lang => lang !== router.query.lang);
+
   return (
     <div className={`navbar-controls__item navbar-lang`}>
       <div
@@ -18,17 +22,19 @@ const NavbarControlsLang = () => {
         ${showDropdown ? `active` : ``}`}
         onClick={() => toggleDropdown(prevState => !prevState)}
       >
-        {langs.find(x => x.id === activeLang).name}
+        {langNames[langKeys.find(lang => lang === router.query.lang)]}
       </div>
       {showDropdown && (
         <div className={`navbar-lang__dropdown`}>
-          {inactiveLangs.map(({ id, name }) => (
+          {inactiveLangs.map(lang => (
             <div
-              key={id}
+              key={lang}
               className={`navbar-lang__dropdown__item`}
-              onClick={() => Router.push(`/${id}`)}
+              onClick={() =>
+                Router.push(router.asPath.replace(/(cs|en|de)/, lang))
+              }
             >
-              {name}
+              {langNames[lang]}
             </div>
           ))}
         </div>

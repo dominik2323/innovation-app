@@ -11,75 +11,80 @@ import NavbarToggler from './NavbarToggler';
 import NavbarControls from './NavbarControls';
 
 import { DataContext } from '../helpers/dataContext';
+import { appLangs } from '../helpers/consts';
 
 const Navbar = () => {
-  const { components } = React.useContext(DataContext);
+  // const { components } = React.useContext(DataContext);
   const { showPhoneMenu, activeInnovationId, isUserLogged } = useSelector(
     state => state
   );
   const dispatch = useDispatch();
   const router = useRouter();
   const { pathname, query, asPath } = router;
-  const { logo } = components.navbar;
-  // const showControls = activeInnovationId.length !== 0;
 
   const controlsVariants = {
     show: { opacity: 1, display: `flex` },
     hide: { opacity: 0, transitionEnd: { display: `none` } },
   };
 
-  // const showControlsInPages = [
-  //   {
-  //     url: () => '/about',
-  //     showToggler: false,
-  //     showControls: {
-  //       share: false,
-  //       download: false,
-  //       contents: true,
-  //       search: true,
-  //     },
-  //   },
-  //   {
-  //     url: () => '/innovations',
-  //     showToggler: false,
-  //     showControls: {
-  //       share: true,
-  //       download: false,
-  //       contents: true,
-  //       search: true,
-  //     },
-  //   },
-  //   {
-  //     url: id => `/innovations?id=${id}`,
-  //     showToggler: true,
-  //     showControls: {
-  //       share: true,
-  //       download: true,
-  //       contents: true,
-  //       search: true,
-  //     },
-  //   },
-  //   {
-  //     url: () => '/',
-  //     showToggler: false,
-  //     showControls: {
-  //       share: false,
-  //       download: false,
-  //       contents: isUserLogged ? true : false,
-  //       search: isUserLogged ? true : false,
-  //     },
-  //   },
-  // ];
+  const regex = (page = '', withQuery = false) =>
+    new RegExp(
+      `^\/(${Object.keys(appLangs).join('|')})\/?(${page})${
+        withQuery ? `?(.*=.*)` : ``
+      }`,
+      'g'
+    );
 
-  // const { showControls, showToggler } = showControlsInPages.find(page => {
-  //   return page.url(query.id) === asPath;
-  // });
-  const showControls = false;
-  const showToggler = false;
-  console.log(router);
+  const showControlsInPages = [
+    {
+      regex: regex('about'),
+      showToggler: false,
+      showControls: {
+        share: false,
+        download: false,
+        contents: true,
+        search: true,
+      },
+    },
+    {
+      regex: regex('innovation', true),
+      showToggler: true,
+      showControls: {
+        share: true,
+        download: true,
+        contents: true,
+        search: true,
+      },
+    },
+    {
+      regex: regex('innovation'),
+      showToggler: false,
+      showControls: {
+        share: true,
+        download: false,
+        contents: true,
+        search: true,
+      },
+    },
+    {
+      regex: regex(),
+      showToggler: false,
+      showControls: {
+        share: false,
+        download: false,
+        contents: isUserLogged ? true : false,
+        search: isUserLogged ? true : false,
+      },
+    },
+  ];
+
+  const { showControls, showToggler } = showControlsInPages.find(page => {
+    return asPath.match(page.regex);
+  });
+
   return (
     <nav className={`navbar`}>
-      <NavbarBrand logo={logo} />
+      <NavbarBrand />
       <NavbarToggler
         controlsVariants={controlsVariants}
         showControls={showToggler}

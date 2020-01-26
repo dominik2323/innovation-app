@@ -7,8 +7,6 @@ import Login from '../../components/Login';
 import { VARIANTS } from '../../helpers/consts';
 import { useViewportDimensions } from '../../hooks/useViewportDimensions';
 
-import '../../scss/index.scss';
-
 const Index = ({ ...props }) => {
   const isUserLogged = useSelector(state => state.isUserLogged);
   const { w } = useViewportDimensions();

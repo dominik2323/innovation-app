@@ -4,11 +4,11 @@ import { DataContext } from '../helpers/dataContext';
 import Img from './Img';
 
 const AboutPage = () => {
-  const { about } = React.useContext(DataContext);
+  const { about, components } = React.useContext(DataContext);
   const { directorphoto, directorname, abouttext, directorposition } = about;
   return (
     <div className={`about`}>
-      <h2>O Logistice ŠKODA AUTO</h2>
+      <h2>{components.aboutHeader}</h2>
       <div className={`about__content`}>
         <div className={`about__content__director`}>
           <Img src={directorphoto.url} />
@@ -20,7 +20,8 @@ const AboutPage = () => {
         <div className={`about__content__quote`}>
           <ScrollbarComponent
             vTrackStyle={{ right: 0, left: `unset` }}
-            style={{ height: `initial` }}>
+            style={{ height: `initial` }}
+          >
             {abouttext.map(item => {
               if (item.type === `paragraph`) {
                 return <p key={item.text}>{item.text}</p>;

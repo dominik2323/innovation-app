@@ -1,9 +1,9 @@
-import components from "./components";
-import innovations from "./innovations";
-import humans from "./humans";
+import strings from './components';
+import innovations from './innovations';
+import humans from './humans';
 
 export default {
-  components: components,
+  components: strings,
   innovations: innovations,
-  humans: humans
+  humans: humans,
 };

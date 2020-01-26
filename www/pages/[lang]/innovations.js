@@ -15,8 +15,6 @@ import { selectInnovationById } from '../../helpers/functions';
 import { DataContext } from '../../helpers/dataContext';
 import { useViewportDimensions } from '../../hooks/useViewportDimensions';
 
-import '../../scss/index.scss';
-
 const Innovations = () => {
   const dispatch = useDispatch();
   const activeInnovationId = useSelector(state => state.activeInnovationId);
@@ -27,9 +25,8 @@ const Innovations = () => {
 
   React.useEffect(() => {
     if (id !== undefined) {
+      console.log(id);
       dispatch(setActiveInnovationId(id));
-    } else {
-      dispatch(setActiveInnovationId(''));
     }
   }, [id]);
 
@@ -52,10 +49,6 @@ const Innovations = () => {
       <InnovationPage />
     </View>
   );
-};
-
-Innovations.getInitialProps = () => {
-  return {};
 };
 
 export default Innovations;

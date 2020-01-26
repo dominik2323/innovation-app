@@ -6,9 +6,12 @@ import withRedux from 'next-redux-wrapper';
 import { Provider } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 
+import '../scss/index.scss';
+
 import { initializeStore } from '../store/reducer';
 import DataContextProvider from '../helpers/dataContext';
 import { fetchData } from '../helpers/fetchData';
+import { appLangs, defaultAppLang } from '../helpers/consts';
 
 // components
 // ? workaround – useRouter in Navbar component is not defined on server
@@ -16,27 +19,31 @@ const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 
 class MyApp extends App {
   static async getInitialProps({ ctx }) {
-    /*
-     * if user comes to / or nonexisting path then redirect him
-     * to localized page based on his headers
-     */
-    const appLangs = ['cs', 'en', 'de'];
-    const defaultLang = `en`;
+    if (ctx.req) {
+      const appLangsRegex = new RegExp(
+        `^\/(${Object.keys(appLangs).join('|')})`
+      );
+      const matchLang = ctx.req.url.match(appLangsRegex);
 
-    if (
-      ctx.req.url === '/' ||
-      !appLangs.includes(ctx.req.url.split('/').pop())
-    ) {
-      const regex = /([a-z]{2})/g;
-      const browserLangs = ctx.req.headers['accept-language'].match(regex);
-      const bestMatch =
-        appLangs.find(lang => browserLangs.includes(lang)) || defaultLang;
-
-      ctx.res.writeHead(302, { Location: bestMatch });
-      ctx.res.end();
-    } else {
-      const data = await fetchData(ctx.req);
-      return { data };
+      if (matchLang) {
+        const data = await fetchData(ctx.req, appLangs[matchLang[1]]);
+        return { data };
+      } else {
+        /*
+        > if the first two letters in uri doesnt match the applangs and we are on the server,
+        > then try to redirect user with his url to the localized page
+       */
+        const browserLanguages = ctx.req.headers['accept-language'].match(
+          /[a-z]{2}/g
+        );
+        const bestLang = Object.keys(appLangs).find(lang =>
+          browserLanguages.includes(lang)
+        );
+        ctx.res.writeHead(302, {
+          Location: `/${bestLang + ctx.req.url}`,
+        });
+        ctx.res.end();
+      }
     }
   }
   render() {
@@ -53,9 +60,9 @@ class MyApp extends App {
           }}
         >
           <DataContextProvider
-            innovations={data.innovations}
-            humans={data.humans}
-            about={data.about}
+            innovations={data?.innovations}
+            humans={data?.humans}
+            about={data?.about}
           >
             <Navbar router={router} />
             <AnimatePresence initial={false}>

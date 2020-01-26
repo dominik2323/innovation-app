@@ -20,7 +20,7 @@ const initialState = {
   currentSlideshowIndex: 0,
   showSidebar: `hide`,
   playInnovationVideo: false,
-  isUserLogged: true,
+  isUserLogged: false,
   showNavbarSearch: false,
   showNavbarDownload: false,
   areAuthorsVisible: false,
@@ -74,10 +74,14 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
+
 export const initializeStore = (preloadedState = initialState) => {
   return createStore(
     reducer,
     preloadedState,
-    composeWithDevTools(applyMiddleware())
+    process.env.NODE_ENV === 'development'
+      ? composeEnhancers(applyMiddleware())
+      : applyMiddleware()
   );
 };

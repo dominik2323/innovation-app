@@ -2,7 +2,7 @@ const createPdfBody = require('./createPdfBody.js');
 const PDFdoc = require('pdfkit');
 const toMm = require('./helpers/convertUnits.js');
 
-module.exports = (innovationData, humansData) => {
+module.exports = (innovationData, humansData, lang) => {
   return new Promise(async (resolve, reject) => {
     const doc = new PDFdoc({ size: `A4`, margin: toMm(15) });
 
@@ -13,7 +13,7 @@ module.exports = (innovationData, humansData) => {
       resolve(pdfData);
     });
 
-    await createPdfBody(doc, { innovationData, humansData });
+    await createPdfBody(doc, { innovationData, humansData }, lang);
 
     doc.end();
   });

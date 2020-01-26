@@ -1,11 +1,12 @@
-import React from "react";
-import { DataContext } from "../helpers/dataContext";
-import { useSelector, useDispatch } from "react-redux";
-import { selectInnovationById, findAuthor } from "../helpers/functions";
-import { setAuthorsVisibility } from "../store/actions";
-import Img from "./Img";
+import React from 'react';
+import { DataContext } from '../helpers/dataContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectInnovationById, findAuthor } from '../helpers/functions';
+import { setAuthorsVisibility } from '../store/actions';
+import Img from './Img';
 
 const Human = ({ img, name, phone, email, isGarant }) => {
+  const { components } = React.useContext(DataContext);
   return (
     <div className={`human`}>
       <div className={`human__avatar`}>
@@ -13,7 +14,7 @@ const Human = ({ img, name, phone, email, isGarant }) => {
       </div>
       <div className={`human__details`}>
         <h4>{name}</h4>
-        {isGarant && <p className={``}>garant projektu</p>}
+        {isGarant && <p className={``}>{components.authorsGarantOfProject}</p>}
         <p>{phone}</p>
         <p>{email}</p>
       </div>
@@ -22,7 +23,7 @@ const Human = ({ img, name, phone, email, isGarant }) => {
 };
 
 const InnovationUiSidebarDetailAuthors = () => {
-  const { humans, innovations } = React.useContext(DataContext);
+  const { humans, innovations, components } = React.useContext(DataContext);
   const ref = React.useRef(null);
   const dispatch = useDispatch();
   const activeInnovationId = useSelector(state => state.activeInnovationId);
@@ -49,7 +50,7 @@ const InnovationUiSidebarDetailAuthors = () => {
     <div ref={ref} className={`${classNamePrefix}__authors`}>
       {authorsData.length === 0 ? null : (
         <React.Fragment>
-          <h3>Autoři</h3>
+          <h3>{components.authors}</h3>
           <div className={`${classNamePrefix}__authors__list`}>
             {authorsData.map(({ name, phone, email, img, id, isGarant }, i) => (
               <Human
