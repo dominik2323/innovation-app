@@ -42,4 +42,28 @@
       }
     }
   }
+  @include tablet-por-down {
+    display: flex;
+    margin-left: 0;
+    margin-top: cols(1);
+    &__active-lang {
+      background-color: $white;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-left: 5px;
+    }
+    &__dropdown {
+      border-top-right-radius: 25px;
+      border-bottom-left-radius: 0;
+      position: static;
+      flex-direction: row;
+      background-color: $white;
+      padding-right: 5px;
+      &__item {
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
 }

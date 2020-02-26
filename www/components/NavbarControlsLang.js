@@ -19,12 +19,12 @@ const NavbarControlsLang = () => {
     <div className={`navbar-controls__item navbar-lang`}>
       <div
         className={`navbar-lang__active-lang
-        ${showDropdown ? `active` : ``}`}
+        ${showDropdown && window.innerWidth > 900 ? `active` : ``}`}
         onClick={() => toggleDropdown(prevState => !prevState)}
       >
         {langNames[langKeys.find(lang => lang === router.query.lang)]}
       </div>
-      {showDropdown && (
+      {(showDropdown || window.innerWidth <= 900) && (
         <div className={`navbar-lang__dropdown`}>
           {inactiveLangs.map(lang => (
             <div
