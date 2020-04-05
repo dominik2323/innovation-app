@@ -20,12 +20,11 @@ const Innovations = () => {
   const activeInnovationId = useSelector(state => state.activeInnovationId);
   const { innovations } = React.useContext(DataContext);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, lang } = router.query;
   const { w } = useViewportDimensions();
 
   React.useEffect(() => {
     if (id !== undefined) {
-      console.log(id);
       dispatch(setActiveInnovationId(id));
     }
   }, [id]);

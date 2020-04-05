@@ -31,7 +31,9 @@ const NavbarControlsLang = () => {
               key={lang}
               className={`navbar-lang__dropdown__item`}
               onClick={() =>
-                Router.push(router.asPath.replace(/(cs|en|de)/, lang))
+                Router.push(
+                  router.asPath.split('?')[0].replace(/(cs|en|de)/, lang)
+                )
               }
             >
               {langNames[lang]}

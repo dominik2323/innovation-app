@@ -1,16 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import InnovationUiSidebarDetailAbout from "./InnovationUiSidebarDetailAbout";
-import InnovationUiSidebarDetailAuthors from "./InnovationUiSidebarDetailAuthors";
-import InnovationUiSidebarDetailFiles from "./InnovationUiSidebarDetailFiles";
-import Scrollbar from "./Scrollbar";
+import InnovationUiSidebarDetailAbout from './InnovationUiSidebarDetailAbout';
+import InnovationUiSidebarDetailAuthors from './InnovationUiSidebarDetailAuthors';
+import InnovationUiSidebarDetailFiles from './InnovationUiSidebarDetailFiles';
+import Scrollbar from './Scrollbar';
+
+import { useAuth0 } from '../helpers/auth';
 
 const InnovationUiSidebarDetail = () => {
   const activeInnovationId = useSelector(state => state.activeInnovationId);
+  const { isAuthenticated, user } = useAuth0();
 
   const classNamePrefix = `innovation-ui__sidebar__content__detail`;
   const prevActiveInnovationId = React.useRef(null);
+
+  const hideContent = user?.isAllowed;
 
   React.useEffect(() => {
     if (activeInnovationId !== prevActiveInnovationId) {
@@ -26,10 +31,10 @@ const InnovationUiSidebarDetail = () => {
       <Scrollbar vTrackStyle={{ right: 15 }} id={`sidebar-detail`}>
         <div className={`${classNamePrefix}__wrapper`}>
           <InnovationUiSidebarDetailAbout />
-          <InnovationUiSidebarDetailAuthors />
+          {hideContent && <InnovationUiSidebarDetailAuthors />}
         </div>
       </Scrollbar>
-      <InnovationUiSidebarDetailFiles />
+      {hideContent && <InnovationUiSidebarDetailFiles />}
     </div>
   );
 };

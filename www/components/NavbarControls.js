@@ -7,6 +7,7 @@ import NavbarControlsShare from './NavbarControlsShare';
 import NavbarControlsSearch from './NavbarControlsSearch';
 import NavbarControlsDownload from './NavbarControlsDownload';
 import NavbarControlsLang from './NavbarControlsLang';
+import NavbarControlsLogin from './NavbarControlsLogin';
 
 import { DataContext } from '../helpers/dataContext';
 import {
@@ -51,6 +52,7 @@ const NavbarControls = ({ controlsVariants, showControls }) => {
         </div>
       )}
       <NavbarControlsLang />
+      <NavbarControlsLogin />
     </motion.div>
   );
 };

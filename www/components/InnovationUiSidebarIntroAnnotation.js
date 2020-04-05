@@ -7,8 +7,11 @@ import { selectInnovationById } from '../helpers/functions';
 import { useViewportDimensions } from '../hooks/useViewportDimensions';
 import { toggleSidebar } from '../store/actions';
 
+import { useAuth0 } from '../helpers/auth';
+
 const InnovationUiSidebarIntroAnnotation = () => {
   const { innovations, components } = React.useContext(DataContext);
+  const { isAuthenticated, user } = useAuth0();
   const { activeInnovationId, showSidebar, areAuthorsVisible } = useSelector(
     state => state
   );
@@ -27,7 +30,6 @@ const InnovationUiSidebarIntroAnnotation = () => {
         ? `.innovation-ui__sidebar__content`
         : `#sidebar-detail .scrollbar-scroller`
     );
-    console.log(el.scrollTop, el.scrollHeight);
     el.scrollTop = el.scrollHeight;
   };
 
@@ -46,15 +48,17 @@ const InnovationUiSidebarIntroAnnotation = () => {
         >
           {showSidebar === `show` ? buttonLessInfo : buttonMoreInfo}
         </Button>
-        <Link
-          className={areAuthorsVisible ? `disable` : ``}
-          handleClick={() => {
-            dispatch(toggleSidebar(`show`));
-            scrollToAuthors();
-          }}
-        >
-          {contactToAuthors}
-        </Link>
+        {isAuthenticated && user?.isAllowed && (
+          <Link
+            className={areAuthorsVisible ? `disable` : ``}
+            handleClick={() => {
+              dispatch(toggleSidebar(`show`));
+              scrollToAuthors();
+            }}
+          >
+            {contactToAuthors}
+          </Link>
+        )}
       </div>
     </div>
   );

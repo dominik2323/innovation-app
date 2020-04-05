@@ -19,7 +19,8 @@ module.exports = {
     navbarSearchResults: 'search results',
     navbarSearchLabel: 'Search',
     navbarDownloadLabel: 'Download PDF',
-    login: 'Login',
+    login: 'Log In',
+    logout: 'Log out',
     password: 'Password',
     contactToAuthors: 'Contact to authors',
     authorsGarantOfProject: 'Garant project',
@@ -27,6 +28,7 @@ module.exports = {
     authorsAuthorOfProject: 'Author of project',
     photos: 'Photos',
     sidebarDownloadLabel: 'Download',
+    unauthorized: 'Your account is unauthorized.',
   },
 
   cs: {
@@ -50,6 +52,7 @@ module.exports = {
     navbarSearchLabel: 'Hledat',
     navbarDownloadLabel: 'Stáhnout PDF',
     login: 'Login',
+    logout: 'Odhlásit se',
     password: 'Heslo',
     contactToAuthors: 'Kontakt na autory',
     authors: 'Autoři',
@@ -57,6 +60,7 @@ module.exports = {
     authorsAuthorOfProject: 'Autor projektu',
     sidebarDownloadLabel: 'Ke stažení',
     photos: 'Fotografie',
+    unauthorized: 'Váš účet ještě nebyl schválený.',
   },
 
   de: {
@@ -80,6 +84,7 @@ module.exports = {
     navbarSearchLabel: 'Suche',
     navbarDownloadLabel: 'PDF Herunterladen',
     login: 'Einloggen',
+    logout: 'Log out',
     password: 'Passwort',
     contactToAuthors: 'Kontakt zu Autoren',
     authorsGarantOfProject: 'Garant-Projekt',
@@ -87,5 +92,6 @@ module.exports = {
     photos: 'Foto',
     authors: 'Autoren',
     sidebarDownloadLabel: 'Herunterladen',
+    unauthorized: 'Váš účet ještě nebyl schválený.',
   },
 };

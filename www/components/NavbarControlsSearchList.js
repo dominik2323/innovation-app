@@ -2,7 +2,7 @@ import React from 'react';
 import { DataContext } from '../helpers/dataContext';
 import { useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 import {
   toggleNavbarSearch,
@@ -26,8 +26,9 @@ const NavbarControlsSearchList = ({
   queryIsSearchable,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { components } = React.useContext(DataContext);
-  const selectProject = selectProjectAction(dispatch);
+  const selectProject = selectProjectAction(dispatch, router);
   const classNamePrefix = `navbar__search`;
 
   return (
@@ -72,13 +73,13 @@ const NavbarControlsSearchList = ({
 
 export default NavbarControlsSearchList;
 
-const selectProjectAction = dispatch => uid => {
+const selectProjectAction = (dispatch, router) => (uid) => {
   dispatch(toggleSidebar(`half`));
   dispatch(toggleNavbarSearch(false));
   dispatch(toggleNavbarDownload(false));
   dispatch(togglePhoneMenu(false));
   Router.push({
-    pathname: '/innovations',
+    pathname: `/${router.query.lang}/innovations`,
     query: { id: uid },
   });
 };

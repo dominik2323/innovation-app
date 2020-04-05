@@ -4,16 +4,7 @@
   @include for-ie {
     height: 100%;
   }
-  &:after {
-    content: '';
-    display: block;
-    height: 2px;
-    width: calc(100% - 15px);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: $soft-gray;
-  }
+
   // &__heading {
   // margin: 0px 0 15px;
   h3 {
