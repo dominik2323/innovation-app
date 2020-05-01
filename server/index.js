@@ -54,7 +54,7 @@ server.get('/api/innovations', async (req, res) => {
   } else {
     data = await getApi.query(
       Prismic.Predicates.at('document.type', 'innovations'),
-      { lang: req.query.lang, pageSize: 1000 }
+      { pageSize: 1000, lang: 'cs-cz' }
     );
   }
 
