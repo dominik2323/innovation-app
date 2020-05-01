@@ -42,7 +42,7 @@ class MyApp extends App {
         const browserLanguages = ctx.req.headers['accept-language'].match(
           /[a-z]{2}/g
         );
-        const bestLang = Object.keys(appLangs).find(lang =>
+        const bestLang = Object.keys(appLangs).find((lang) =>
           browserLanguages.includes(lang)
         );
         ctx.res.writeHead(302, {
@@ -75,7 +75,6 @@ class MyApp extends App {
         client_id={authConfig.clientId}
         redirect_uri={baseUrl}
         onRedirectCallback={onRedirectCallback}
-        loginLang={router.query.lang}
       >
         <Provider store={store}>
           <Div100vh

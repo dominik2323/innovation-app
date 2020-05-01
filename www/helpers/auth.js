@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
+import { useRouter } from 'next/router';
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
@@ -17,10 +18,13 @@ export const Auth0Provider = ({
   const [auth0Client, setAuth0] = useState();
   const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
+  const { query } = useRouter();
 
   useEffect(() => {
     const initAuth0 = async () => {
+      console.log('init auth');
       const auth0FromHook = await createAuth0Client(initOptions);
+      console.log(auth0FromHook);
       setAuth0(auth0FromHook);
 
       if (
@@ -70,6 +74,9 @@ export const Auth0Provider = ({
     setIsAuthenticated(true);
     setUser(user);
   };
+
+  console.log({ loginLang, query });
+
   return (
     <Auth0Context.Provider
       value={{
@@ -82,16 +89,14 @@ export const Auth0Provider = ({
         getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
         loginWithRedirect: (...p) =>
           auth0Client.loginWithRedirect({
-            ...p,
-            ui_locales: loginLang,
-            redirect_uri: `${window.location.origin}/${loginLang}`,
+            ui_locales: query.lang,
+            redirect_uri: `${window.location.origin}/${query.lang}`,
           }),
         getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
         getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
         logout: (...p) =>
           auth0Client.logout({
-            ...p,
-            returnTo: `${window.location.origin}/${loginLang}`,
+            returnTo: `${window.location.origin}/${query.lang}`,
           }),
       }}
     >
