@@ -1,24 +1,30 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
-import Img from "./Img";
-import NavbarControlsShare from "./NavbarControlsShare";
-import NavbarControlsSearch from "./NavbarControlsSearch";
-import NavbarControlsDownload from "./NavbarControlsDownload";
-import Popup from "./Popup";
-import Router from "next/router";
+import React from 'react';
+import Router, { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
+
+import NavbarControlsShare from './NavbarControlsShare';
+import NavbarControlsSearch from './NavbarControlsSearch';
+import NavbarControlsDownload from './NavbarControlsDownload';
+import NavbarControlsLang from './NavbarControlsLang';
+import NavbarControlsLogin from './NavbarControlsLogin';
+
+import { DataContext } from '../helpers/dataContext';
 import {
   toggleInnovationVideo,
   setCurrentSlideshowIndex,
   toggleSidebar,
   toggleNavbarSearch,
   toggleNavbarDownload,
-  togglePhoneMenu
-} from "../store/actions";
+  togglePhoneMenu,
+  setActiveInnovationId,
+} from '../store/actions';
 
 const NavbarControls = ({ controlsVariants, showControls }) => {
-  const { showNavbarDownload, showPhoneMenu } = useSelector(state => state);
+  const { components } = React.useContext(DataContext);
+  const { showPhoneMenu } = useSelector(state => state);
   const dispatch = useDispatch();
+  const router = useRouter();
   const showContentsAction = showContents(dispatch);
   const { search, download, share, contents } = showControls;
 
@@ -37,25 +43,28 @@ const NavbarControls = ({ controlsVariants, showControls }) => {
           <span
             className={`navbar__controls__item__label navbar__controls__item__label--text`}
             onClick={() => {
-              showContentsAction();
+              showContentsAction(router.query.lang);
               dispatch(togglePhoneMenu(false));
             }}
           >
-            Obsah
+            {components.contents}
           </span>
         </div>
       )}
+      <NavbarControlsLang />
+      <NavbarControlsLogin />
     </motion.div>
   );
 };
 
 export default NavbarControls;
 
-const showContents = dispatch => () => {
+const showContents = dispatch => lang => {
   dispatch(setCurrentSlideshowIndex(0));
   dispatch(toggleSidebar(`hide`));
   dispatch(toggleNavbarSearch(false));
   dispatch(toggleNavbarDownload(false));
   dispatch(toggleInnovationVideo(false));
-  Router.push({ pathname: `/innovations` });
+  dispatch(setActiveInnovationId(''));
+  Router.push(`/[lang]/innovations`, `/${lang}/innovations`);
 };

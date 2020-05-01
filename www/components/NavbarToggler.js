@@ -1,23 +1,25 @@
-import React from "react";
-import Img from "./Img";
-import { useKeyPress } from "../hooks/useKeyPress";
-import { useSelector, useDispatch } from "react-redux";
-import Router from "next/router";
-import { motion } from "framer-motion";
+import React from 'react';
+import Img from './Img';
+import { useKeyPress } from '../hooks/useKeyPress';
+import { useSelector, useDispatch } from 'react-redux';
+import Router, { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 import {
   toggleInnovationVideo,
   setCurrentSlideshowIndex,
   toggleSidebar,
   toggleNavbarSearch,
-  toggleNavbarDownload
-} from "../store/actions";
-import { DataContext } from "../helpers/dataContext";
+  setActiveInnovationId,
+  toggleNavbarDownload,
+} from '../store/actions';
+import { DataContext } from '../helpers/dataContext';
 
 const NavbarToggler = ({ controlsVariants, showControls }) => {
   const [index, setIndex] = React.useState(0);
   const dispatch = useDispatch();
-  const leftArrow = useKeyPress("ArrowLeft");
-  const rightArrow = useKeyPress("ArrowRight");
+  const leftArrow = useKeyPress('ArrowLeft');
+  const rightArrow = useKeyPress('ArrowRight');
+  const router = useRouter();
   const activeInnovationId = useSelector(state => state.activeInnovationId);
   const { innovations } = React.useContext(DataContext);
 
@@ -35,7 +37,7 @@ const NavbarToggler = ({ controlsVariants, showControls }) => {
       nextPosition = nextPossiblePosition;
     }
     const nextActiveId = innovations[nextPosition].uid;
-    changeInnovationAction(nextActiveId);
+    changeInnovationAction(nextActiveId, router.query.lang);
   };
 
   /*                                    */
@@ -82,11 +84,12 @@ const NavbarToggler = ({ controlsVariants, showControls }) => {
 
 export default NavbarToggler;
 
-const changeInnovation = dispatch => nextActiveId => {
+const changeInnovation = dispatch => (nextActiveId, lang) => {
   dispatch(toggleInnovationVideo(false));
   dispatch(setCurrentSlideshowIndex(0));
   dispatch(toggleSidebar(`half`));
   dispatch(toggleNavbarSearch(false));
+  dispatch(setActiveInnovationId(nextActiveId));
   dispatch(toggleNavbarDownload(false));
-  Router.push({ pathname: `/innovations`, query: { id: nextActiveId } });
+  Router.push(`/[lang]/innovations`, `/${lang}/innovations?id=${nextActiveId}`);
 };

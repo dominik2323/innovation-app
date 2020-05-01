@@ -1,28 +1,12 @@
 const axios = require('axios');
-const url = require('url');
+const absoluteUrl = require('./absoluteUrl');
 
-export const absoluteUrl = (req, setLocalhost) => {
-  let protocol = 'https';
-  let host = req ? req.headers.host : window.location.hostname;
-
-  if (host.indexOf('localhost') > -1) {
-    if (setLocalhost) host = setLocalhost;
-    protocol = 'http';
-  }
-
-  return url.format({
-    protocol,
-    host,
-    pathname: '/', // req.url
-  });
-};
-
-export async function fetchData(req) {
+export async function fetchData(req, lang) {
   const baseUrl = absoluteUrl(req, 'localhost:3000');
   const apiUrl = endpoint =>
     process.env.NODE_ENV === 'production'
-      ? `${baseUrl}/api/${endpoint}`
-      : `http://localhost:9999/api/${endpoint}`;
+      ? `${baseUrl}/api/${endpoint}?lang=${lang}`
+      : `http://localhost:9999/api/${endpoint}?lang=${lang}`;
 
   const humans = axios.get(apiUrl('humans'));
   const about = axios.get(apiUrl('about'));
@@ -41,6 +25,6 @@ export async function fetchData(req) {
     };
   } catch (ex) {
     console.log(`Error fetching data from ${apiUrl} - ${ex.message}`);
-    return { user: null };
+    return null;
   }
 }

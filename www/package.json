@@ -16,6 +16,7 @@
   "author": "Dominik Tomczik",
   "license": "ISC",
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.4",
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@vimeo/player": "^2.10.0",
     "@zeit/next-css": "^1.0.1",
@@ -41,6 +42,7 @@
     "prismic-javascript": "^2.1.1",
     "prismic-reactjs": "^1.1.2",
     "react": "^16.10.2",
+    "react-cookie": "^4.0.3",
     "react-copy-to-clipboard": "^5.0.2",
     "react-countup": "^4.2.2",
     "react-custom-scrollbars": "^4.2.1",

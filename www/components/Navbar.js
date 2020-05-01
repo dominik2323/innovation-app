@@ -11,73 +11,78 @@ import NavbarToggler from './NavbarToggler';
 import NavbarControls from './NavbarControls';
 
 import { DataContext } from '../helpers/dataContext';
+import { appLangs } from '../helpers/consts';
 
+const controlsVariants = {
+  show: { opacity: 1, display: `flex` },
+  hide: { opacity: 0, transitionEnd: { display: `none` } },
+};
+
+const regex = (page = '') => {
+  return new RegExp(`^\/(${Object.keys(appLangs).join('|')})\/?(${page})`);
+};
+
+const showControlsInPages = [
+  {
+    regex: regex('about/?$'),
+    showToggler: false,
+    showControls: {
+      share: false,
+      download: false,
+      contents: true,
+      search: true,
+    },
+  },
+  {
+    regex: regex('innovations\\?id=.*'),
+    showToggler: true,
+    showControls: {
+      share: true,
+      download: true,
+      contents: true,
+      search: true,
+    },
+  },
+  {
+    regex: regex('innovations/?$'),
+    showToggler: false,
+    showControls: {
+      share: true,
+      download: false,
+      contents: true,
+      search: true,
+    },
+  },
+  {
+    regex: regex(),
+    showToggler: false,
+    showControls: {
+      share: false,
+      download: false,
+      contents: true,
+      search: true,
+    },
+  },
+];
 const Navbar = () => {
-  const { components } = React.useContext(DataContext);
+  // const { components } = React.useContext(DataContext);
   const { showPhoneMenu, activeInnovationId, isUserLogged } = useSelector(
-    state => state
+    (state) => state
   );
   const dispatch = useDispatch();
   const router = useRouter();
   const { pathname, query, asPath } = router;
-  const { logo } = components.navbar;
-  // const showControls = activeInnovationId.length !== 0;
 
-  const controlsVariants = {
-    show: { opacity: 1, display: `flex` },
-    hide: { opacity: 0, transitionEnd: { display: `none` } },
-  };
-
-  const showControlsInPages = [
-    {
-      url: id => '/about',
-      showToggler: false,
-      showControls: {
-        share: false,
-        download: false,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => '/innovations',
-      showToggler: false,
-      showControls: {
-        share: true,
-        download: false,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => `/innovations?id=${id}`,
-      showToggler: true,
-      showControls: {
-        share: true,
-        download: true,
-        contents: true,
-        search: true,
-      },
-    },
-    {
-      url: id => '/',
-      showToggler: false,
-      showControls: {
-        share: false,
-        download: false,
-        contents: isUserLogged ? true : false,
-        search: isUserLogged ? true : false,
-      },
-    },
-  ];
-
-  const { showControls, showToggler } = showControlsInPages.find(page => {
-    return page.url(query.id) === asPath;
-  });
+  const { showControls, showToggler, regex } = showControlsInPages.find(
+    (page) => {
+      // console.log(asPath, page.regex.test(asPath));
+      return page.regex.test(asPath);
+    }
+  );
 
   return (
     <nav className={`navbar`}>
-      <NavbarBrand logo={logo} />
+      <NavbarBrand />
       <NavbarToggler
         controlsVariants={controlsVariants}
         showControls={showToggler}
@@ -86,14 +91,14 @@ const Navbar = () => {
         controlsVariants={controlsVariants}
         showControls={showControls}
       />
-      {(isUserLogged || pathname !== '/') && (
-        <motion.div
-          initial={false}
-          className={`navbar__burger`}
-          onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}>
-          <Img className={``} src={`/static/icons/burger.svg`} />
-        </motion.div>
-      )}
+
+      <motion.div
+        initial={false}
+        className={`navbar__burger`}
+        onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}
+      >
+        <Img className={``} src={`/static/icons/burger.svg`} />
+      </motion.div>
     </nav>
   );
 };

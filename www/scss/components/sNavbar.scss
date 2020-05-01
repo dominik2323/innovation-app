@@ -7,7 +7,7 @@
   right: 0;
   background-color: $white;
   box-shadow: 0 3px 50px dark-gray(0.4);
-  padding: 0 cols(1);
+  padding: 0 cols(0.5) 0 cols(1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,7 +96,7 @@
       right: 0;
       padding: 60px 0;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       &.hide {
         display: none !important;
       }

@@ -1,12 +1,12 @@
-import React from "react";
-import Router from "next/router";
-import { DataContext } from "../helpers/dataContext";
-import { useSelector } from "react-redux";
-import { selectInnovationById } from "../helpers/functions";
-import Link from "./Link";
+import React from 'react';
+import Router from 'next/router';
+import { DataContext } from '../helpers/dataContext';
+import { useSelector } from 'react-redux';
+import { selectInnovationById } from '../helpers/functions';
+import Link from './Link';
 
 const InnovationUiSidebarDetailFiles = () => {
-  const { humans, innovations } = React.useContext(DataContext);
+  const { humans, innovations, components } = React.useContext(DataContext);
   const activeInnovationId = useSelector(state => state.activeInnovationId);
   const { download } = selectInnovationById(innovations, activeInnovationId);
 
@@ -14,10 +14,10 @@ const InnovationUiSidebarDetailFiles = () => {
 
   return download.length === 0 ? null : (
     <div className={`${classNamePrefix}`}>
-      <h3>Ke stažení</h3>
+      <h3>{components.sidebarDownloadLabel}</h3>
       {download.map(({ file, filename }, i) => (
         <a target={`_blank`} href={file.url} key={file.name + i}>
-          {`${filename} (${file.name.split(".").pop()})`}
+          {`${filename} (${file.name.split('.').pop()})`}
         </a>
       ))}
     </div>

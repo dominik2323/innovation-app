@@ -1,20 +1,23 @@
-import React from "react";
-import { DataContext } from "../helpers/dataContext";
-import { useSelector, useDispatch } from "react-redux";
-import Link from "./Link";
-import Button from "./Button";
-import { selectInnovationById } from "../helpers/functions";
-import { useViewportDimensions } from "../hooks/useViewportDimensions";
-import { toggleSidebar } from "../store/actions";
+import React from 'react';
+import { DataContext } from '../helpers/dataContext';
+import { useSelector, useDispatch } from 'react-redux';
+import Link from './Link';
+import Button from './Button';
+import { selectInnovationById } from '../helpers/functions';
+import { useViewportDimensions } from '../hooks/useViewportDimensions';
+import { toggleSidebar } from '../store/actions';
+
+import { useAuth0 } from '../helpers/auth';
 
 const InnovationUiSidebarIntroAnnotation = () => {
   const { innovations, components } = React.useContext(DataContext);
+  const { isAuthenticated, user } = useAuth0();
   const { activeInnovationId, showSidebar, areAuthorsVisible } = useSelector(
     state => state
   );
   const dispatch = useDispatch();
   const { w } = useViewportDimensions();
-  const { lessInfo, moreInfo } = components.button;
+  const { buttonLessInfo, buttonMoreInfo, contactToAuthors } = components;
   const { innovationname, perex } = selectInnovationById(
     innovations,
     activeInnovationId
@@ -27,7 +30,6 @@ const InnovationUiSidebarIntroAnnotation = () => {
         ? `.innovation-ui__sidebar__content`
         : `#sidebar-detail .scrollbar-scroller`
     );
-    console.log(el.scrollTop, el.scrollHeight);
     el.scrollTop = el.scrollHeight;
   };
 
@@ -44,15 +46,19 @@ const InnovationUiSidebarIntroAnnotation = () => {
             dispatch(toggleSidebar(showSidebar === `half` ? `show` : `half`))
           }
         >
-          {showSidebar === `show` ? lessInfo : moreInfo}
+          {showSidebar === `show` ? buttonLessInfo : buttonMoreInfo}
         </Button>
-        <Link
-          className={areAuthorsVisible ? `disable` : ``}
-          handleClick={() => {
-            dispatch(toggleSidebar(`show`));
-            scrollToAuthors();
-          }}
-        >{`Kontakt na autory`}</Link>
+        {isAuthenticated && user?.isAllowed && (
+          <Link
+            className={areAuthorsVisible ? `disable` : ``}
+            handleClick={() => {
+              dispatch(toggleSidebar(`show`));
+              scrollToAuthors();
+            }}
+          >
+            {contactToAuthors}
+          </Link>
+        )}
       </div>
     </div>
   );

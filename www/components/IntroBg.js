@@ -19,8 +19,8 @@ const IntroBg = ({ path, poster, togglePlay }) => {
         autoPlay={true}
         muted={true}
         playsInline={true}
-        src={path}
-        poster={poster}
+        src={`/static/img/components/introLoop.mp4`}
+        poster={`/static/img/components/introPoster.jpg`}
         // ref={ref}
       />
     </div>

@@ -10,12 +10,12 @@ import { logUser } from '../store/actions';
 const Login = () => {
   const dispatch = useDispatch();
   const { components } = React.useContext(DataContext);
-
+  const { login: loginLabel, password: passwordLabel } = components;
   const login = `info@skoda.cz`;
   const password = `inolog19`;
   const defaultState = {
     login: { value: '', status: '' },
-    password: { value: '', status: '' }
+    password: { value: '', status: '' },
   };
 
   const [formState, setFormState] = React.useState(defaultState);
@@ -45,7 +45,7 @@ const Login = () => {
         {},
         {
           ...formState,
-          [id]: { value: value, status: handleStatus(id, value) }
+          [id]: { value: value, status: handleStatus(id, value) },
         }
       )
     );
@@ -54,18 +54,18 @@ const Login = () => {
   return (
     <div className={`login`}>
       <div className={`login__input ${formState.login.status}`}>
-        <label htmlFor="login">Login</label>
+        <label htmlFor='login'>{loginLabel}</label>
         <input
-          type="text"
+          type='text'
           id={`login`}
           value={formState.login.value}
           onChange={e => handleChange(e)}
         />
       </div>
       <div className={`login__input ${formState.password.status}`}>
-        <label htmlFor="password">Heslo</label>
+        <label htmlFor='password'>{passwordLabel}</label>
         <input
-          type="password"
+          type='password'
           id={`password`}
           value={formState.password.value}
           onChange={e => handleChange(e)}

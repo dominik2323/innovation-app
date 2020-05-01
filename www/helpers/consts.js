@@ -1,6 +1,13 @@
 export const TOPBAR_HEIGHT = `60px`;
 export const VIEW_HEIGHT = `100vh - ${TOPBAR_HEIGHT}px`;
 
+export const appLangs = {
+  cs: 'cs-cz',
+  de: 'de-de',
+  en: 'en-gb',
+};
+export const defaultAppLang = 'en';
+
 export const VH = (frag = 1) => {
   if (process.browser) {
     return window.innerHeight * frag;

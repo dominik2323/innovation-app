@@ -1,18 +1,30 @@
 import React from 'react';
 import Router, { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+
+import { DataContext } from '../helpers/dataContext';
+import { appLangs } from '../helpers/consts';
+import absoluteUrl from '../helpers/absoluteUrl';
 
 import Img from './Img';
 
 const NavbarControlsDownload = () => {
+  const { components } = React.useContext(DataContext);
   const router = useRouter();
-  const { id } = router.query;
+  const activeInnovationId = useSelector(state => state.activeInnovationId);
+  const { lang } = router.query;
+  const baseUrl = absoluteUrl(null, 'localhost:3000');
+  const apiUrl =
+    process.env.NODE_ENV === `production`
+      ? `${baseUrl}/api/pdf?uid=${activeInnovationId}&lang=${appLangs[lang]}`
+      : `http://localhost:9999/api/pdf?uid=${activeInnovationId}&lang=${appLangs[lang]}`;
   return (
-    <div
-      className={`navbar__controls__item`}
-      onClick={() => Router.push(`/api/pdf?uid=${id}`)}>
+    <a className={`navbar__controls__item`} href={apiUrl}>
       <Img src={`/static/icons/download.svg`} />
-      <span className={`navbar__controls__item__label`}>Stáhnout PDF</span>
-    </div>
+      <span className={`navbar__controls__item__label`}>
+        {components.navbarDownloadLabel}
+      </span>
+    </a>
   );
 };
 

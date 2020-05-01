@@ -1,8 +1,8 @@
-import React from "react";
-import { DataContext } from "../helpers/dataContext";
-import { useSelector } from "react-redux";
-import CountUp from "react-countup";
-import { selectInnovationById } from "../helpers/functions";
+import React from 'react';
+import { DataContext } from '../helpers/dataContext';
+import { useSelector } from 'react-redux';
+import CountUp from 'react-countup';
+import { selectInnovationById } from '../helpers/functions';
 
 const classNamePrefix = `innovation-ui__sidebar__content__intro`;
 const InnovationUiSidebarIntroBulletsBullet = ({ bullet, index }) => (
@@ -20,9 +20,9 @@ const InnovationUiSidebarIntroBullets = () => {
     activeInnovationId
   );
   const {
-    motivation: motivationHeader,
-    benefits: benefitsHeader
-  } = components.innovationUiSidebar;
+    sidebarMotivation: motivationHeader,
+    sidebarBenefits: benefitsHeader,
+  } = components;
 
   return (
     <div className={`${classNamePrefix}__bullets`}>
