@@ -1,0 +1,55 @@
+.innovation-ui {
+  &__slider {
+    $slider-height: 100px;
+    position: absolute;
+    top: calc((100%) / 2 - (#{$slider-height} / 2));
+    left: 20px;
+    background-color: $light-gray;
+    width: 50px;
+    height: $slider-height;
+    border-radius: 25px;
+    box-shadow: 0 3px 50px dark-gray(0.4);
+    @include for-ie {
+      pointer-events: auto;
+    }
+    &__arrow {
+      background-image: url('/static/icons/innovationSliderArrow.svg');
+      // background-size: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 50%;
+      cursor: pointer;
+      &--inactive {
+        cursor: default;
+        opacity: 0.4;
+        &:hover {
+          opacity: 0.4 !important;
+        }
+      }
+      &--down,
+      &--up {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &--down {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  @include tablet-por-down {
+    $slider-height: 100px;
+    &__slider {
+      top: calc((100%) - #{$slider-height} - 15px);
+      left: calc((100vw / 2) - (50px / 2));
+    }
+  }
+  @media screen and (max-height: 400px) {
+    $slider-height: 100px;
+    &__slider {
+      top: calc((100%) / 2 - (#{$slider-height} / 2));
+      left: 20px;
+    }
+  }
+}

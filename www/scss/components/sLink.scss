@@ -1,0 +1,10 @@
+a,
+.link {
+  color: $green;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+    // color: $green-h;
+  }
+}

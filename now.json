@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "/server/*.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "/www/package.json",
+      "use": "@now/next"
+    }
+  ],
+  "env": {
+    "GRANT_TYPE": "@grant_type",
+    "CLIENT_ID": "@client_id",
+    "CLIENT_SECRET": "@client_secret",
+    "AUDIENCE": "@audience",
+    "AUTH0_DOMAIN": "@auth0_domain",
+    "JWT_SECRET": "@jwt_secret",
+    "SENDGRID_API_KEY": "@sendgrid_api_key"
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/www/$1",
+      "continue": true
+    }
+  ]
+}

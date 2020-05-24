@@ -1,0 +1,21 @@
+.navbar-login {
+  display: flex;
+  align-items: center;
+  span {
+    display: flex;
+    justify-content: center;
+    margin-left: 30px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  img {
+    width: 25px;
+    margin-left: 10px;
+  }
+  @include tablet-por-down {
+    span {
+      margin-left: 0;
+      margin-top: 30px;
+    }
+  }
+}

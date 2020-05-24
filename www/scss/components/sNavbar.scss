@@ -1,0 +1,124 @@
+.navbar {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $white;
+  box-shadow: 0 3px 50px dark-gray(0.4);
+  padding: 0 cols(0.5) 0 cols(1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  &__brand img {
+    cursor: pointer;
+  }
+  &__controls {
+    display: flex;
+    align-items: center;
+    &__item {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+        > span {
+          color: $green;
+        }
+      }
+      &__label {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        display: none;
+        &--text {
+          display: block;
+        }
+      }
+    }
+  }
+  &__toggler {
+    display: flex;
+    align-items: center;
+    span {
+      color: $green;
+      flex-shrink: 0;
+    }
+    &__pos {
+      font-size: 30px;
+      font-weight: 600;
+      margin-left: 40px;
+    }
+    &__len {
+      font-size: 18px;
+      position: relative;
+      bottom: 12px;
+      margin-right: 40px;
+      margin-left: 5px;
+    }
+    &__btn {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  &__burger {
+    display: none !important;
+  }
+
+  @include tablet-lan-down {
+  }
+
+  @include tablet-por-down {
+    &__toggler {
+      display: none !important;
+    }
+    &__burger {
+      display: block !important;
+      width: 30px;
+      height: 19px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__controls {
+      position: absolute;
+      top: 100%;
+      background-color: $light-gray;
+      left: 0;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+      right: 0;
+      padding: 60px 0;
+      flex-direction: column;
+      justify-content: center;
+      &.hide {
+        display: none !important;
+      }
+      &__item {
+        flex-shrink: 0;
+        &:not(:last-child) {
+          margin-right: 0;
+        }
+        margin-bottom: 30px;
+        img {
+          display: none;
+        }
+        &__label {
+          display: block;
+        }
+      }
+    }
+  }
+
+  @include phone-down {
+    &__brand img {
+      width: 170px;
+    }
+  }
+}

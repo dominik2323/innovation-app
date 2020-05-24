@@ -1,0 +1,168 @@
+
+  	@font-face {
+      font-family: 'skoda-next';
+      font-style: normal;
+      font-weight: 300;
+      src: url('https://inolog.cz/static/fonts/SKODA-Light.eot');
+      src: url('https://inolog.cz/static/fonts/SKODA-Light.eot') format('embedded-opentype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Light.ttf') format('truetype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Light.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: 'skoda-next';
+      font-style: normal;
+      font-weight: 400;
+      src: url('https://inolog.cz/static/fonts/SKODA-Regular.eot');
+      src: url('https://inolog.cz/static/fonts/SKODA-Regular.eot?#iefix') format('embedded-opentype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Regular.ttf') format('truetype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Regular.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: 'skoda-next';
+      font-style: normal;
+      font-weight: 500;
+      src: url('https://inolog.cz/static/fonts/SKODA-Bold.eot');
+      src: url('https://inolog.cz/static/fonts/SKODA-Bold.eot?#iefix') format('embedded-opentype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Bold.ttf') format('truetype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Bold.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: 'skoda-next';
+      font-style: normal;
+      font-weight: 600;
+      src: url('https://inolog.cz/static/fonts/SKODA-Black.eot');
+      src: url('https://inolog.cz/static/fonts/SKODA-Black.eot?#iefix') format('embedded-opentype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Black.ttf') format('truetype'),
+        url('https://inolog.cz/static/fonts/SKODANext-Black.woff') format('woff');
+    }
+
+    .auth0-lock {
+      font-family: 'skoda-next' !important;
+    }
+  	
+  	.auth0-lock.auth0-lock .auth0-lock-widget {
+      width: 500px !important;
+    }
+
+    .auth0-lock-input-wrap-with-icon span {
+      display: none !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-input-wrap.auth0-lock-input-wrap-with-icon {
+      padding-left: 0 !important;  
+    }
+
+    .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-widget {
+      box-shadow: none !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-cred-pane {
+      background: transparent !important;  
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-submit {
+      height: 50px !important;
+      padding: 0 !important;
+      border-radius: 25px !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-form {
+      padding: 0 !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input {
+      height: 50px !important;
+      border-radius: 25px !important;
+      padding-left: 20px !important;
+    }
+
+    .auth0-lock-content-wrapper {
+      margin-bottom: 20px !important;
+    }
+
+    .auth0-lock-header-bg {
+      display: none !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-name {
+      display: none !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-header-welcome {
+      background-image: url('https://www.inolog.cz/static/icons/skodaLogo.svg') !important;
+      background-repeat:  no-repeat !important;
+      background-position: center !important;
+      height: 80px !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-header-logo {
+      display: none !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-header {
+      background: transparent !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-tabs-container {
+      margin: 0 0 40px 0px !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-tabs {
+      border-radius: calc(45px / 2) !important;
+      overflow: hidden !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-tabs li a, .auth0-lock.auth0-lock .auth0-lock-tabs li span {
+      padding: 15px 0 !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-tabs li.auth0-lock-tabs-current {
+      box-shadow: 2px 0px 0 0 #f3f3f3 !important;
+      background: #4ba82e !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-tabs li.auth0-lock-tabs-current span {
+      color: white !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-input-wrap {
+      background: transparent !important;
+      border: 0 !important;
+    }
+    
+    .auth0-lock.auth0-lock .auth0-lock-terms {
+      margin-top: 20px !important;
+      background: transparent !important;
+    }
+
+    .auth0-lock.auth0-lock .auth0-lock-close-button, .auth0-lock.auth0-lock .auth0-lock-back-button {
+      top: 40px !important;
+    }
+
+    @media screen and (max-width: 480px) {
+      .auth0-lock-container {
+        /*! background: red !important; */
+      }
+      .auth0-lock.auth0-lock .auth0-lock-widget {
+        width: 100% !important;
+      }
+      .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-widget-container {
+        padding: 0 20px !important;; 
+      }
+      .auth0-lock.auth0-lock .auth0-lock-content-wrapper {
+        /*! flex-grow: 0 !important; */;
+      }
+      .auth0-lock.auth0-lock .auth0-lock-submit {
+        margin-bottom: 20px !important;;
+      }
+      .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-overlay {
+        display: block !important;
+      }
+      .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-body-content {
+        background: transparent !important;
+      }
+    }
+  

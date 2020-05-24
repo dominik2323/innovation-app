@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'skoda-next';
+  font-style: normal;
+  font-weight: 300;
+  src: url('https://inolog.cz/static/fonts/SKODA-Light.eot');
+  src: url('https://inolog.cz/static/fonts/SKODA-Light.eot')
+      format('embedded-opentype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Light.ttf') format('truetype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'skoda-next';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://inolog.cz/static/fonts/SKODA-Regular.eot');
+  src: url('https://inolog.cz/static/fonts/SKODA-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Regular.ttf')
+      format('truetype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'skoda-next';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://inolog.cz/static/fonts/SKODA-Bold.eot');
+  src: url('https://inolog.cz/static/fonts/SKODA-Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Bold.ttf') format('truetype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'skoda-next';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://inolog.cz/static/fonts/SKODA-Black.eot');
+  src: url('https://inolog.cz/static/fonts/SKODA-Black.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Black.ttf') format('truetype'),
+    url('https://inolog.cz/static/fonts/SKODANext-Black.woff') format('woff');
+}
+
+.container {
+  width: 540px;
+  padding: 30px 60px;
+  margin: 50px auto;
+  background-color: #f3f3f3;
+  border-radius: 15px;
+  font-family: 'skoda-next', Arial, Helvetica, sans-serif;
+}
+
+.brand {
+  border-bottom: 1px solid #a1a1a1;
+  padding-bottom: 35px;
+}
+
+.brand img {
+  width: 250px;
+}
+
+.content {
+  display: block;
+  margin: 120px 0 100px;
+}
+
+.content h1 {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.content p {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.content a {
+  text-decoration: none;
+}
+
+.content a button {
+  height: 45px;
+  padding: 0 30px;
+  border-radius: 22.5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  background-color: #4ba82e;
+  margin: auto;
+  display: block;
+  margin-top: 15px;
+}
+
+.disclaimer {
+  font-size: 13px;
+  margin-top: 30px;
+  padding-top: 30px;
+  text-align: center;
+  display: block;
+  color: #6e6e6e;
+  border-top: 1px solid #a1a1a1;
+}

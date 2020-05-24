@@ -1,0 +1,71 @@
+.auth {
+  height: 100%;
+  display: flex;
+  // margin-top: 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__wrap {
+    // height: 100%;
+    border-radius: 10px;
+    width: 500px;
+    box-shadow: 0 0 20px dark-gray(0.3);
+    padding: 30px;
+
+    &__intro {
+      margin-bottom: 40px;
+
+      display: block;
+      width: 100%;
+
+      h1 {
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 16px;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    &__response-error {
+      border: 1px solid $error;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: $error;
+      margin-bottom: 30px;
+    }
+
+    &__section {
+      color: $green;
+      margin-bottom: 10px;
+    }
+
+    &__sign-up {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-top: 30px;
+    }
+    &__gdpr {
+      margin-bottom: 30px;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+    form {
+      width: 100%;
+    }
+  }
+  @include tablet-lan-down {
+    overflow-y: auto;
+    justify-content: unset;
+    &__wrap {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      background-color: $white;
+      box-shadow: none;
+    }
+  }
+}

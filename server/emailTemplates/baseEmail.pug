@@ -1,0 +1,18 @@
+html  
+  head
+    style
+      include baseEmailStyles.css
+  body
+    table(class='container')
+      tr
+        td(class='brand')
+          img(src="https://www.inolog.cz/static/icons/skoda-logistika-01.png", alt="SKODA AUTO Logistika")   
+      tr  
+        td(class='content')
+          h1 #{header}
+          p #{instructions}
+          a(href=url)
+           button #{cta}
+      tr
+        td(class='disclaimer')
+          p #{disclaimer}

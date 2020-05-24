@@ -1,0 +1,66 @@
+.btn {
+  height: 45px;
+  padding: 0 30px;
+  border-radius: 22.5px;
+  border: 0;
+  cursor: pointer;
+  color: $white;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  &:focus {
+    outline: 0;
+  }
+  &.close-icon {
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      background-image: url('/static/icons/closeIconBtn.svg');
+      background-size: 100%;
+      margin-right: 20px;
+      position: relative;
+      top: 2px;
+    }
+    &:hover::before {
+      background-image: url('/static/icons/closeIconBtnWhite.svg');
+    }
+  }
+  &__secondary {
+    background-color: transparent;
+    border: 1px solid $white;
+    &:hover {
+      border: 1px solid $green-h;
+      background-color: $green-h;
+    }
+    &:active {
+      border: 1px solid $green-h;
+      background-color: $green;
+    }
+    &--green {
+      // background-color: $green;
+      color: $green;
+      border: 1px solid $green;
+      &:hover {
+        border: 1px solid $green-h;
+        color: $white;
+        background-color: $green-h;
+      }
+      &:active {
+        background-color: $green;
+      }
+    }
+  }
+  &__primary {
+    background-color: $green;
+    &:hover {
+      background-color: $green-h;
+    }
+    &:active {
+      background-color: $green;
+    }
+  }
+}

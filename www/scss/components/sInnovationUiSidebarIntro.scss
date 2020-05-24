@@ -1,0 +1,19 @@
+.innovation-ui__sidebar__content__intro {
+  width: 38.2%;
+  height: 100%;
+  position: relative;
+  padding: 15px 0;
+  @include tablet-lan-down {
+    width: 100%;
+    height: auto;
+  }
+  /*  &:before {
+   content: "";
+   display: block;
+   width: 1px;
+   height: 100%;
+   background-color: $soft-gray;
+   position: absolute;
+   right: 0;
+ } */
+}
