@@ -22,7 +22,7 @@ router.route('/api/resend-email').post(async (req, res, next) => {
       subject: strings[lang].auth_email_verification_subject,
       sendToName: name,
     });
-    res.status(200).send(strings[lang].resend_email_success);
+    res.status(200).send(strings[lang].auth_signup_success_email_delivered);
   } catch (e) {
     next(e);
   }

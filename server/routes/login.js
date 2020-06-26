@@ -3,6 +3,7 @@ const AuthClient = require('auth0').AuthenticationClient;
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const strings = require('../../globals/strings');
+const { createError } = require('../helpers/createError');
 
 const initAuthClient = new AuthClient({
   domain: process.env.AUTH0_DOMAIN,
@@ -22,39 +23,29 @@ router.route('/api/login').post(async (req, res, next) => {
       (err, user) => {
         // invalid credentials
         if (err && err.statusCode === 403) {
-          console.log(req.body.password);
-          const message = strings[lang].auth_error_invalid_grant;
-          const error = new Error(message);
-          error.status = 403;
-
-          next(error);
+          next(
+            createError(strings[lang].auth_error_invalid_grant, err.statusCode)
+          );
           return;
         }
 
         // too many attempts to login and blocked account
         // TODO: send e-mail to unblock an account from here, and create an endpoint on frontend
         if (err && err.statusCode === 429) {
-          const message = strings[lang].auth_error_too_many_attempts;
-          const error = new Error(message);
-          error.status = 429;
-
-          next(error);
+          next(
+            createError(
+              strings[lang].auth_error_too_many_attempts,
+              err.statusCode
+            )
+          );
           return;
         }
 
         // account is blocked
         if (err && err.statusCode === 401) {
-          const message = strings[lang].auth_error_unauthorized;
-          const error = new Error(message);
-          error.status = 401;
-
-          next(error);
-          return;
-        }
-
-        // other errors
-        if (err) {
-          next(err);
+          next(
+            createError(strings[lang].auth_error_unauthorized, err.statusCode)
+          );
           return;
         }
 
@@ -63,11 +54,12 @@ router.route('/api/login').post(async (req, res, next) => {
         // user's email is not verified yet
         // TODO: send user an verification e-mail again
         if (!userData.email_verified) {
-          const message = strings[lang].auth_error_email_not_verified;
-          const error = new Error(message);
-          error.status = 401;
-
-          next(error);
+          next(createError(strings[lang].auth_error_email_not_verified, 401));
+          return;
+        }
+        // other errors
+        if (err) {
+          next(err);
           return;
         }
 

@@ -71,7 +71,6 @@ const InnovationContents = ({ ...props }) => {
       <div className={`innovation-contents__contents`}>
         <Scrollbar vTrackStyle={{ left: 0, right: `unset` }}>
           {innovations.map(({ innovationname, uid, id }, i) => (
-            // DON'T FORGET TO MAKE THE KEY UNIQUE !
             <motion.div
               key={id}
               id={uid}

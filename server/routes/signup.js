@@ -8,7 +8,11 @@ const strings = require('../../globals/strings');
 router.route('/api/signup').post(async (req, res, next) => {
   const lang = req.query.lang || 'en';
   const baseUrl = absoluteUrl(req, 'localhost:3000');
-
+  const ALLOWED_EMAIL_DOMAINS = [`(?!ext\.)(.*)(@skoda-auto\.cz)`];
+  const isUserAutoAllowed = new RegExp(
+    `^${ALLOWED_EMAIL_DOMAINS.join('|')}$`,
+    `g`
+  ).test(req.body.email);
   try {
     const createUser = await axios.post(
       `https://${process.env.AUTH0_DOMAIN}/api/v2/users`,
@@ -19,7 +23,7 @@ router.route('/api/signup').post(async (req, res, next) => {
         name: req.body.name,
         user_metadata: {
           phone: req.body.phone,
-          isAllowed: false,
+          isAllowed: isUserAutoAllowed,
         },
       },
       {
@@ -42,18 +46,36 @@ router.route('/api/signup').post(async (req, res, next) => {
       }
     );
 
-    await sendEmailTemplate({
-      content: {
-        header: strings[lang].auth_email_verification_header,
-        instructions: strings[lang].auth_email_verification_instructions,
-        url: `${baseUrl}${lang}/verify-email?t=${token}`,
-        cta: strings[lang].button_verify,
-        disclaimer: strings[lang].auth_email_verification_disclaimer,
-      },
-      sendTo: createUser.data.email,
-      subject: strings[lang].auth_email_verification_subject,
-      sendToName: createUser.data.name,
-    });
+    await Promise.all([
+      sendEmailTemplate({
+        content: {
+          header: strings[lang].auth_email_verification_header,
+          instructions: strings[lang].auth_email_verification_instructions,
+          url: `${baseUrl}${lang}/verify-email?t=${token}`,
+          cta: strings[lang].button_verify,
+          disclaimer: strings[lang].auth_email_verification_disclaimer,
+        },
+        sendTo: createUser.data.email,
+        subject: strings[lang].auth_email_verification_subject,
+        sendToName: createUser.data.name,
+      }),
+      !isUserAutoAllowed &&
+        sendEmailTemplate({
+          content: {
+            header: `Nová registrace`,
+            instructions: ``,
+            url: `${baseUrl}${lang}/allow-user?t=${token}`,
+            cta: strings[lang].button_verify,
+            userInfo: {
+              name: createUser.data.name,
+              email: createUser.data.email,
+            },
+          },
+          sendTo: `skoda.inolog@gmail.com`,
+          subject: `Nová registrace`,
+          sendToName: `Jan Novák`,
+        }),
+    ]);
 
     res.status(createUser.status).send(token);
   } catch (e) {

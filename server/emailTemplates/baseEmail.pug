@@ -11,6 +11,9 @@ html
         td(class='content')
           h1 #{header}
           p #{instructions}
+          if userInfo
+            p jméno: #{userInfo.name}
+            p e-mail: #{userInfo.email}
           a(href=url)
            button #{cta}
       tr

@@ -7,6 +7,7 @@ router.route('/api/verify-email').get(async (req, res, next) => {
   try {
     const { user_id } = jwt.verify(req.query.t, process.env.JWT_SECRET);
 
+    // if useremail contains @skodaauto.cz, than allow this user automatically
     const userData = await updateUserData(
       user_id,
       { email_verified: true },

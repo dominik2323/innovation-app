@@ -17,5 +17,6 @@ router.use(require('./requestChangePassword'));
 router.use(require('./changePassword'));
 router.use(require('./testSendgrid'));
 router.use(require('./resendVerificationEmail'));
+router.use(require('./allowUser'));
 
 module.exports = router;

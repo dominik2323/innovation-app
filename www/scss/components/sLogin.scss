@@ -29,12 +29,18 @@
       }
     }
 
-    &__response-error {
-      border: 1px solid $error;
+    &__response {
       padding: 10px 20px;
       border-radius: 10px;
-      color: $error;
       margin-bottom: 30px;
+      &--error {
+        color: $error;
+        border: 1px solid $error;
+      }
+      &--status {
+        color: $green;
+        border: 1px solid $green;
+      }
     }
 
     &__section {
@@ -57,7 +63,7 @@
       width: 100%;
     }
   }
-  @include tablet-lan-down {
+  @include phone-down {
     overflow-y: auto;
     justify-content: unset;
     &__wrap {

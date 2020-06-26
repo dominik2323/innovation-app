@@ -54,10 +54,12 @@
 
 .brand {
   border-bottom: 1px solid #a1a1a1;
-  padding-bottom: 35px;
+  padding-bottom: 30px;
 }
 
 .brand img {
+  margin: auto;
+  display: block;
   width: 250px;
 }
 

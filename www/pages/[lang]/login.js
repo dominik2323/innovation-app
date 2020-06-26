@@ -1,16 +1,16 @@
-import React from 'react';
 import axios from 'axios';
-import absoluteUrl from '../../helpers/absoluteUrl';
-import { Formik, Form, Field } from 'formik';
-import Button from '../../components/Button';
-import { useCookies } from 'react-cookie';
+import { Field, Form, Formik } from 'formik';
 import Router, { useRouter } from 'next/router';
+import React from 'react';
+import { useCookies } from 'react-cookie';
 import strings from '../../../globals/strings';
-import Link from '../../components/Link';
-import Input from '../../components/Input';
-import { emailRegexp } from '../../helpers/consts';
+import Button from '../../components/Button';
 import Header from '../../components/Header';
+import Input from '../../components/Input';
+import Link from '../../components/Link';
 import View from '../../components/View';
+import absoluteUrl from '../../helpers/absoluteUrl';
+import { emailRegexp } from '../../helpers/consts';
 import { useAuth } from '../../hocs/auth';
 
 const Login = () => {
@@ -31,7 +31,7 @@ const Login = () => {
     setServerError('');
     actions.setSubmitting(true);
     try {
-      const userData = await axios.post(`${baseUrl}api/login`, {
+      const userData = await axios.post(`${baseUrl}api/login?lang=${lang}`, {
         ...values,
         // TODO: add hash
         password: values.password,
@@ -40,7 +40,7 @@ const Login = () => {
       setCookies('userData', userData.data, { sameSite: true, secure: true });
       Router.push('/[lang]', `/${lang}`);
     } catch (e) {
-      // console.log({ e });
+      console.log({ e });
       setServerError(e.response.data.message);
     }
 
@@ -82,7 +82,9 @@ const Login = () => {
                 <p>{strings[lang].auth_login_perex}</p>
               </div>
               {!!serverError && (
-                <div className={`auth__wrap__response-error`}>
+                <div
+                  className={`auth__wrap__response auth__wrap__response--error`}
+                >
                   {serverError}
                 </div>
               )}
@@ -118,7 +120,7 @@ const Login = () => {
                   className={`btn__primary`}
                   type={`submit`}
                 >
-                  {strings[lang].button_send}
+                  {strings[lang].button_login}
                 </Button>
                 <a
                   href={`#`}

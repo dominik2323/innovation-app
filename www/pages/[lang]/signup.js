@@ -1,39 +1,42 @@
-import React from 'react';
-import { Formik, Field, Form } from 'formik';
-import Input from '../../components/Input';
-import strings from '../../../globals/strings';
-import Router, { useRouter } from 'next/router';
-import Button from '../../components/Button';
-import { emailRegexp, passwordRegexp } from '../../helpers/consts';
-import Scrollbar from '../../components/Scrollbar';
-import Header from '../../components/Header';
-import View from '../../components/View';
 import axios from 'axios';
-import absoluteUrl from '../../helpers/absoluteUrl';
-import { useViewportDimensions } from '../../hooks/useViewportDimensions';
+import { Field, Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+import React from 'react';
+import strings from '../../../globals/strings';
 import AuthSuccess from '../../components/AuthSuccess';
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Input from '../../components/Input';
 import Link from '../../components/Link';
+import View from '../../components/View';
+import absoluteUrl from '../../helpers/absoluteUrl';
+import { emailRegexp } from '../../helpers/consts';
 
 const Signup = () => {
   const router = useRouter();
   const baseUrl = absoluteUrl(null, 'localhost:9999');
   const { lang } = router.query;
+  const [step, changeStep] = React.useState(0);
+  console.log(step);
 
   const [signupResponse, setSignupResponse] = React.useState({
     status: null,
     error: null,
-    token: '',
+    token: null,
   });
 
   const [resendEmailResponse, setResendEmailResponse] = React.useState({
     status: null,
+    isLoading: false,
     error: null,
-    payload: '',
+    payload: null,
   });
 
-  const { w, h } = useViewportDimensions();
-
   const resendEmail = async () => {
+    setResendEmailResponse((prevState) => ({
+      ...prevState,
+      isLoading: true,
+    }));
     try {
       const res = await axios.post(`${baseUrl}api/resend-email?lang=${lang}`, {
         token: signupResponse.token,
@@ -41,13 +44,14 @@ const Signup = () => {
       setResendEmailResponse({
         status: res.status,
         payload: res.data,
+        isLoading: false,
         error: null,
       });
     } catch (e) {
-      console.log({ e });
       setResendEmailResponse({
         status: e.status,
         error: e.response.data.message,
+        isLoading: false,
         payload: null,
       });
     }
@@ -71,25 +75,30 @@ const Signup = () => {
       });
     } catch (e) {
       setSignupResponse({
-        error: e.response.data.payload,
+        error: e.response.data.message,
         status: e.response.data.status,
         token: null,
       });
+      changeStep(0);
     }
   };
 
-  if (!!signupResponse.error) {
+  if (!!signupResponse.token) {
     return (
       <AuthSuccess
         error={resendEmailResponse.error}
         status={resendEmailResponse.payload}
-        perex={strings[lang].auth_login_success_perex}
-        header={strings[lang].auth_login_success_header}
+        perex={strings[lang].auth_signup_success_perex}
+        header={strings[lang].auth_signup_success_header}
         buttonText={strings[lang].button_continue}
         redirectTo={() => router.push(`/[lang]/login`, `/${lang}/login`)}
       >
-        <Link handleClick={resendEmail}>
-          {strings[lang].auth_login_success_resend_email}
+        <Link
+          isLoading={resendEmailResponse.isLoading}
+          handleClick={resendEmail}
+          style={{ marginTop: 20, display: 'block' }}
+        >
+          {strings[lang].auth_signup_success_link_resend_email}
         </Link>
       </AuthSuccess>
     );
@@ -140,7 +149,7 @@ const Signup = () => {
             };
           }
 
-          if (values.name.length === 0) {
+          if (values.name.length === 0 && step === 1) {
             errors.name = { length: strings[lang].auth_error_no_name };
           }
 
@@ -155,88 +164,124 @@ const Signup = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {({ errors, isSubmitting }) => (
+        {({ errors, isSubmitting, validateForm, values, setTouched }) => (
           <div className={`auth`}>
             <div className={`auth__wrap`}>
-              <Scrollbar
-                style={{ height: w <= 1200 ? '100%' : h - 60 - 60 - 60 }}
-                scrollTop={!!signupResponse && 0}
-                vTrackStyle={{ right: -15 }}
-              >
-                <div className={`auth__wrap__intro`}>
-                  <h1>{strings[lang].auth_signup_header}</h1>
-                  <>{strings[lang].auth_signup_perex}</>
+              <div className={`auth__wrap__intro`}>
+                <h1>{strings[lang].auth_signup_header}</h1>
+                <>{strings[lang].auth_signup_perex}</>
+              </div>
+              {!!signupResponse.error && (
+                <div
+                  className={`auth__wrap__response auth__wrap__response--error`}
+                >
+                  {signupResponse.error}
                 </div>
-                {!!signupResponse.error && (
-                  <div className={`auth__wrap__response-error`}>
-                    {strings[lang][`auth_error_${signupResponse.error}`]}
-                  </div>
-                )}
-                <Form>
-                  <h2 className={`auth__wrap__section`}>
-                    {strings[lang].auth_signup_form_header_login_data}
-                  </h2>
-                  <Field
-                    name={`email`}
-                    id={`email`}
-                    type={`text`}
-                    error={errors.email}
-                    label={strings[lang].auth_field_email}
-                    as={Input}
-                  />
-                  <Field
-                    name={`password`}
-                    id={`password`}
-                    type={`password`}
-                    label={strings[lang].auth_field_password}
-                    error={errors.password}
-                    as={Input}
-                  />
-                  <Field
-                    name={`passwordAgain`}
-                    id={`passwordAgain`}
-                    type={`password`}
-                    error={errors.passwordAgain}
-                    label={strings[lang].auth_field_password_again}
-                    as={Input}
-                  />
-                  <h2 className={`auth__wrap__section`}>
-                    {strings[lang].auth_signup_form_header_personal_data}
-                  </h2>
-                  <Field
-                    name={`name`}
-                    type={`text`}
-                    id={`name`}
-                    label={strings[lang].auth_field_name}
-                    error={errors.name}
-                    as={Input}
-                  />
-                  <Field
-                    name={`company`}
-                    type={`text`}
-                    id={`company`}
-                    required={false}
-                    label={strings[lang].auth_field_company}
-                    as={Input}
-                  />
-
-                  <div className={`auth__wrap__gdpr`}>
-                    <a
-                      href={`https://www.skoda-storyboard.com/cs/ochrana-osobnich-udaju/`}
-                      target={`_blank`}
+              )}
+              <Form>
+                {step === 0 && (
+                  <>
+                    <h2 className={`auth__wrap__section`}>
+                      {strings[lang].auth_signup_form_header_login_data}
+                    </h2>
+                    <Field
+                      name={`email`}
+                      id={`email`}
+                      type={`text`}
+                      error={errors.email}
+                      label={strings[lang].auth_field_email}
+                      as={Input}
+                    />
+                    <Field
+                      name={`password`}
+                      id={`password`}
+                      type={`password`}
+                      label={strings[lang].auth_field_password}
+                      error={errors.password}
+                      as={Input}
+                    />
+                    <Field
+                      name={`passwordAgain`}
+                      id={`passwordAgain`}
+                      type={`password`}
+                      error={errors.passwordAgain}
+                      label={strings[lang].auth_field_password_again}
+                      as={Input}
+                    />
+                    <Button
+                      className={`btn__primary`}
+                      type={`button`}
+                      handleClick={() => {
+                        validateForm(values).then((errors) => {
+                          setTouched({
+                            email: true,
+                            password: true,
+                            passwordAgain: true,
+                          });
+                          if (Object.keys(errors).length === 0) {
+                            changeStep(1);
+                          }
+                        });
+                      }}
                     >
-                      {strings[lang].auth_signup_gdpr}
-                    </a>
-                  </div>
-                  <Button
-                    type={`submit`}
-                    isLoading={isSubmitting}
-                    className={`btn__primary`}
-                  >
-                    {strings[lang].button_send}
-                  </Button>
-                </Form>
-              </Scrollbar>
+                      {strings[lang].button_continue}
+                    </Button>
+                  </>
+                )}
+                {step === 1 && (
+                  <>
+                    <h2 className={`auth__wrap__section`}>
+                      {strings[lang].auth_signup_form_header_personal_data}
+                    </h2>
+                    <Field
+                      name={`name`}
+                      type={`text`}
+                      id={`name`}
+                      label={strings[lang].auth_field_name}
+                      error={errors.name}
+                      as={Input}
+                    />
+                    <Field
+                      name={`company`}
+                      type={`text`}
+                      id={`company`}
+                      required={false}
+                      label={strings[lang].auth_field_company}
+                      as={Input}
+                    />
+
+                    <div className={`auth__wrap__gdpr`}>
+                      <a
+                        href={`https://www.skoda-storyboard.com/cs/ochrana-osobnich-udaju/`}
+                        target={`_blank`}
+                      >
+                        {strings[lang].auth_signup_gdpr}
+                      </a>
+                    </div>
+                    <div
+                      style={{
+                        display: `flex`,
+                        justifyContent: `space-between`,
+                      }}
+                    >
+                      <Button
+                        className={`btn__secondary btn__secondary--green`}
+                        type={`button`}
+                        handleClick={() => changeStep(0)}
+                      >
+                        {strings[lang].button_back}
+                      </Button>
+                      <Button
+                        type={`submit`}
+                        isLoading={isSubmitting}
+                        className={`btn__primary`}
+                      >
+                        {strings[lang].button_send}
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </Form>
             </div>
           </div>
         )}

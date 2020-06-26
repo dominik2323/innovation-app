@@ -2,3 +2,4 @@
 www/public/
 server/.env
 www/.next/
+.vercel

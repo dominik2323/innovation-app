@@ -30,7 +30,7 @@ const variants = {
 };
 
 const Innovation = () => {
-  const { activeInnovationId } = useSelector(state => state);
+  const { activeInnovationId } = useSelector((state) => state);
   const { w, h } = useViewportDimensions();
   return (
     <div className={`innovation`}>

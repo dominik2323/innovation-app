@@ -10,12 +10,19 @@ function AuthSuccess({
   status,
   children,
 }) {
-  console.log(error);
   return (
     <div className={`auth`}>
       <div className={`auth__wrap`}>
-        {!!error && <div className={`auth__wrap__response-error`}>{error}</div>}
-        {status && JSON.stringify(status)}
+        {!!error && (
+          <div className={`auth__wrap__response auth__wrap__response--error`}>
+            {error}
+          </div>
+        )}
+        {!!status && (
+          <div className={`auth__wrap__response auth__wrap__response--status`}>
+            {status}
+          </div>
+        )}
         <div className={`auth__wrap__intro`}>
           <h1>{header}</h1>
           <p>{perex}</p>

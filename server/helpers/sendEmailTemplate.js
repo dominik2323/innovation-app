@@ -2,7 +2,8 @@ const axios = require('axios');
 const pug = require('pug');
 const path = require('path');
 const sgMail = require('@sendgrid/mail');
-// const emailTemplate = require('../templates/baseEmail.pug');
+const { userInfo } = require('os');
+
 function sendEmailTemplate({
   sendTo = '',
   sendToName = '',
@@ -25,41 +26,6 @@ function sendEmailTemplate({
     subject: subject,
     html: emailVerificationTemplate,
   });
-  // return axios.post(
-  //   'https://sendgrid.com/v3/mail/send',
-  //   {
-  //     personalizations: [
-  //       {
-  //         to: [
-  //           {
-  //             email: sendTo,
-  //             name: sendToName,
-  //           },
-  //         ],
-  //         subject: subject,
-  //       },
-  //     ],
-  //     from: {
-  //       email: 'skoda.inolog@gmail.com',
-  //       name: 'SKODA AUTO Logistika',
-  //     },
-  //     reply_to: {
-  //       email: 'skoda.inolog@gmail.com',
-  //       name: 'SKODA AUTO Logistika',
-  //     },
-  //     content: [
-  //       {
-  //         type: 'text/html',
-  //         value: emailVerificationTemplate,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
-  //     },
-  //   }
-  // );
 }
+
 exports.sendEmailTemplate = sendEmailTemplate;

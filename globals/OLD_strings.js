@@ -1,0 +1,122 @@
+module.exports = {
+  cs: {
+    about_header: 'O Logistice ŠKODA AUTO',
+    auth_change_password_header: 'Vytvořte si nové heslo',
+    auth_change_password_page_title: 'Změna hesla',
+    auth_change_password_perex:
+      'Heslo by mělo mít alespoň 8 znaků a obsahovat alespoň jedno velké písmeno, jednu číslici a jeden speciální znak.',
+    auth_change_password_success_header: 'Vaše heslo bylo úspěšně změněno',
+    auth_change_password_success_perex:
+      'Nyní se s novým heslem můžete přihlásit.',
+    auth_email_blocked_account_disclaimer:
+      'Pokud jste tento e-mail obdrželi bez vašeho vědomí, kontaktujte nás.',
+    auth_email_blocked_account_header: 'Váš účet byl zablokován',
+    auth_email_blocked_account_instructions:
+      'Kliknutím na následující odkaz si budete moct účet opět aktivovat.',
+    auth_email_blocked_account_subject: 'Váš účet byl zablokován',
+    auth_email_change_password_disclaimer:
+      'Pokud jste tento e-mail obdrželi bez vašeho vědomí, kontaktujte nás.',
+    auth_email_change_password_header: 'Změňte si svoje heslo',
+    auth_email_change_password_instructions:
+      'Kliknutím na odkaz si můžete nastavit nové heslo pro svůj účet.',
+    auth_email_change_password_subject: 'Změňte si svoje heslo',
+    auth_email_verification_disclaimer:
+      'Pokud jste tento e-mail obdrželi bez vašeho vědomí, kontaktujte nás.',
+    auth_email_verification_header: 'Ověřte si prosím svoji e-mailovou adresu',
+    auth_email_verification_instructions:
+      'Děkujeme, že jste se zaregistrovali. Ověřte svoji e-mailovou adresu kliknutím na tlačítko níže.',
+    auth_email_verification_loading_header: 'Ověřujeme váš e-mail...',
+    auth_email_verification_page_title: 'Ověření vašeho e-mailu',
+    auth_email_verification_subject: 'Ověřte svoji e-mailovou adresu',
+    auth_email_verification_success_header: 'Váš e-mail jsme úspěšně ověřili',
+    auth_email_verification_success_perex:
+      'Váš účet ještě budeme dále schvalovat, abyste získali přístup k celému obsahu webu. Až bude vše připraveno, budeme vás informovat e-mailem.',
+    auth_error_email_not_verified:
+      'Na e-mail jsme vám odeslali odkaz, kterým si aktivujete účet. Poté bude možné se přihlásit.',
+    auth_error_invalid_company: 'Zkontrolujte prosím název společnosti',
+    auth_error_invalid_email_format: 'Nesprávný formát e-mailu.',
+    auth_error_invalid_grant: 'Nesprávný e-mail nebo heslo.',
+    auth_error_invalid_user_password: 'Nesprávný e-mail nebo heslo.',
+    auth_error_no_name: 'Nezapomněli jste vyplnit svoje jméno?',
+    auth_error_password_lowercase:
+      'Heslo by mělo obsahovat alespoň jedno velké písmeno.',
+    auth_error_password_mismatch: 'Hesla se neshodují.',
+    auth_error_password_numeric:
+      'Heslo by mělo obsahovat alespoň jednu číslici.',
+    auth_error_password_special_char:
+      'Heslo by mělo obsahovat alespoň jeden speciální znak.',
+    auth_error_password_too_short: 'Heslo by mělo mít alespoň 8 znaků',
+    auth_error_user_not_found: 'Uživatel s tímto e-mailem neexistuje',
+    auth_error_too_many_attempts:
+      'Příliš mnoho pokusů o přihlášení. Na Váš e-mail jsme poslali instrukce jak dále postupovat.',
+    auth_error_too_many_logins: 'Příliš mnoho přihášení během krátké chvíle.',
+    auth_error_unauthorized:
+      'Váš účet byl zablokován. Na Váš e-mail jsme poslali instrukce jak dále postupovat.',
+    auth_error_user_already_exists: 'Uživatel již exsituje',
+    auth_field_company: 'Společnost',
+    auth_field_email: 'E-mail',
+    auth_field_name: 'Jméno a příjmení',
+    auth_field_password: 'Heslo',
+    auth_field_password_again: 'Heslo znovu',
+    auth_login_cta: 'Ještě nemáte účet? Zaregistrujte se.',
+    auth_login_forgot_password: 'Zapomněli jste heslo?',
+    auth_login_header: 'Přihlaste se ke svému účtu',
+    auth_login_page_title: 'Login',
+    auth_login_perex:
+      'Přihlaste se do aplikace Inovační brožura ŠKODA AUTO Logistika.',
+    auth_request_change_password_header: 'Změňte si svoje heslo',
+    auth_request_change_password_page_title: 'Žádost o změnu hesla',
+    auth_request_change_password_perex:
+      'Zadejte prosím svůj e-mail, se kterým jste se registrovali. Na e-mail Vám zašleme odkaz, se ktrým si budete moci vytvořit nové heslo.',
+    auth_signup_form_header_login_data: 'Přihlašovací údaje',
+    auth_signup_form_header_personal_data: 'Osobní údaje',
+    auth_signup_gdpr:
+      'Registrací souhlasíte s Prohlášením o ochraně soukromí a zásadami ochrany osobních údajů.',
+    auth_signup_header: 'Zaregistrujte se',
+    auth_signup_page_title: 'Registrace',
+    auth_signup_perex:
+      'Po registraci Vám schválíme účet, který Vám umožní mít přístup k dalším informacím v aplikaci.',
+    auth_signup_success_email_delivered: 'E-mail byl úspěšně odeslán.',
+    auth_signup_success_header: 'Nyní jste byli zaregistrováni',
+    auth_signup_success_link_resend_email: 'Znovu poslat potrvzovací odkaz.',
+    auth_signup_success_perex:
+      'Pro ověření Vašeho účtu a přihlášení je nutné ve Vaší e-mailové schránce potrdit odkaz, který Vám byl právě zaslán.',
+    authors: 'Autoři',
+    best_innovations: 'nejlepších inovací',
+    button_about: 'O Logistice ŠKODA AUTO',
+    button_back: 'Zpět',
+    button_change: 'Změnit',
+    button_change_password: 'Změnit heslo',
+    button_continue: 'Pokračovat',
+    button_discover: 'prozkoumat inovace',
+    button_less_info: 'méně informací',
+    button_login: 'Přihlásit se',
+    button_more_info: 'více informací',
+    button_send: 'odeslat',
+    button_unblock: 'Odblokovat',
+    button_verify: 'Ověřit',
+    contact_author_of_project: 'Autor projektu',
+    contact_garant_of_project: 'Garant projektu',
+    contact_to_authors: 'Kontakt na autory',
+    contents: 'Obsah',
+    contents_about_link: 'O Logistice ŠKODA AUTO',
+    login: 'Login',
+    logout: 'Odhlásit se',
+    navbar_download_label: 'Stáhnout PDF',
+    navbar_search_label: 'Hledat',
+    navbar_search_no_results: 'Nepodařilo se najít žádné výsledky',
+    navbar_search_num_of_results: 'Počet výsledků',
+    navbar_search_results: 'Výsledky hledání',
+    navbar_share_label: 'Sdílet',
+    navbar_share_link_copied: 'Odkaz zkopírován do schránky',
+    password: 'Heslo',
+    photos: 'Fotografie',
+    sidebar_about_innovation: 'O inovaci',
+    sidebar_benefits: 'Benefity',
+    sidebar_download_label: 'Ke stažení',
+    sidebar_motivation: 'Motivace',
+    unauthorized: 'Váš účet ještě nebyl schválený.',
+  },
+  en: {},
+  de: {},
+};

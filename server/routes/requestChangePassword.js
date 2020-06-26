@@ -4,10 +4,10 @@ const { sendEmailTemplate } = require('../helpers/sendEmailTemplate');
 const strings = require('../../globals/strings');
 const jwt = require('jsonwebtoken');
 const absoluteUrl = require('../../www/helpers/absoluteUrl');
+const { createError } = require('../helpers/createError');
 
 router.route('/api/request-change-password').post(async (req, res, next) => {
   const lang = req.query.lang || 'en';
-  // console.log(lang);
   const email = req.body.email;
   const baseUrl = absoluteUrl(req, 'localhost:3000');
 
@@ -21,9 +21,7 @@ router.route('/api/request-change-password').post(async (req, res, next) => {
 
     // no user found = empty array
     if (userData.data.length === 0) {
-      const error = new Error('user_not_found');
-      error.status = 400;
-      next(error);
+      next(createError(strings[lang].auth_error_user_not_found, 400));
       return;
     }
 

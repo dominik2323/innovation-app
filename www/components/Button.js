@@ -10,7 +10,7 @@ const Button = ({
   return (
     <button
       className={`btn ${className}`}
-      onClick={() => handleClick()}
+      onClick={(e) => handleClick(e)}
       {...props}
     >
       {isLoading && <div className={`loading`} />}

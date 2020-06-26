@@ -78,8 +78,8 @@ const RequestChangePassword = () => {
             <div className={`auth`}>
               <div className={`auth__wrap`}>
                 <div className={`auth__wrap__intro`}>
-                  <h1>{strings[lang].auth_change_password_header}</h1>
-                  <p>{strings[lang].auth_change_password_perex}</p>
+                  <h1>{strings[lang].auth_request_change_password_header}</h1>
+                  <p>{strings[lang].auth_request_change_password_perex}</p>
                 </div>
                 {/* {responseErrorType && (
                 <div className={`auth__wrap__response-error`}>
