@@ -33,7 +33,6 @@ const ChangePassword = () => {
         })
       )
       .catch((e) => {
-        console.log(e);
         setStatus({
           isLoading: false,
           error: {
@@ -167,6 +166,9 @@ const ChangePassword = () => {
                     >
                       {strings[lang].button_send}
                     </Button>
+                    <p className={`input__required-label`}>
+                      * {strings[lang].auth_field_label_required}
+                    </p>
                   </Form>
                 </>
               )}

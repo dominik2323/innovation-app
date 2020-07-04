@@ -226,6 +226,9 @@ const Signup = () => {
                     >
                       {strings[lang].button_continue}
                     </Button>
+                    <p className={`input__required-label`}>
+                      * {strings[lang].auth_field_label_required}
+                    </p>
                   </>
                 )}
                 {step === 1 && (
@@ -279,6 +282,9 @@ const Signup = () => {
                         {strings[lang].button_send}
                       </Button>
                     </div>
+                    <p className={`input__required-label`}>
+                      * {strings[lang].auth_field_label_required}
+                    </p>
                   </>
                 )}
               </Form>

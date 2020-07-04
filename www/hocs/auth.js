@@ -43,13 +43,14 @@ export const AuthProvider = ({ children }) => {
   }, [cookies.userData]);
 
   const isAuthenticated = !!userData;
-  const isAllowed = userData && userData[`https://inolog.cz/isAllowed`];
+  const metaData = userData && userData[`https://inolog.cz/isAllowed`];
 
   return (
     <AuthContext.Provider
       value={{
-        isAllowed,
+        isAllowed: metaData?.isAllowed,
         isAuthenticated,
+        isBlocked: metaData?.isBlocked,
         isLoading,
         logout: () => {
           removeCookies('userData', {

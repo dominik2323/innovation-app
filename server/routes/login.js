@@ -51,6 +51,7 @@ router.route('/api/login').post(async (req, res, next) => {
 
         const userData = jwt.decode(user.id_token);
 
+        console.log({ userData });
         // user's email is not verified yet
         // TODO: send user an verification e-mail again
         if (!userData.email_verified) {

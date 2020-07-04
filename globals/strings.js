@@ -66,11 +66,14 @@ module.exports = {
     auth_login_page_title: 'Přihlásit se',
     auth_login_perex:
       'Přihlaste se do aplikace Inovační brožura ŠKODA AUTO Logistika.',
-    auth_request_change_password_header:
-      'Odeslali jsme vám e-mail pro změnu hesla',
     auth_request_change_password_page_title: 'Žádost o změnu hesla',
-    auth_request_change_password_perex:
+    auth_request_change_password_success_header:
+      'Odeslali jsme vám e-mail pro změnu hesla',
+    auth_request_change_password_success_perex:
       'Najdete v něm odkaz, pod kterým si budete moci změnit heslo na nové.',
+    auth_request_change_password_header: 'Změňte si svoje heslo',
+    auth_request_change_password_perex:
+      'Zadejte prosím email, se kterým jste se registrovali.',
     auth_signup_form_header_login_data: 'Přihlašovací údaje',
     auth_signup_form_header_personal_data: 'Osobní údaje',
     auth_signup_gdpr:
@@ -98,13 +101,25 @@ module.exports = {
     button_unblock: 'Odblokovat',
     button_login: 'Přihlásit se',
     button_verify: 'Ověřit',
+    button_register: 'Registrovat se',
     contact_author_of_project: 'Autor projektu',
     contact_garant_of_project: 'Garant projektu',
     contact_to_authors: 'Kontakt na autory',
     contents: 'Obsah',
     contents_about_link: 'O Logistice ŠKODA AUTO',
+    locked: 'Inovace není veřejně přístupná',
     login: 'Přihlásit se',
     logout: 'Odhlásit se',
+    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_perex:
+      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
+    innovation_content_not_registered_header:
+      'Pro přístup k dalšímu obsahu se zaregistrujte nebo přihlašte',
+    innovation_content_not_registered_perex:
+      'Po registraci budeme Váš účet dále schvalovat. Poté budete mít přístup ke všem inovacím.',
+    innovation_content_blocked_header: 'Litujeme, Váš účet nebyl schválen',
+    innovation_content_blocked_perex:
+      'Stále můžete procházet všechny veřejně přístupné inovace',
     navbar_download_label: 'Stáhnout PDF',
     navbar_search_label: 'Hledat',
     navbar_search_no_results: 'Nepodařilo se najít žádné výsledky',
@@ -156,7 +171,7 @@ module.exports = {
       'Wir werden Ihr Konto weiter genehmigen, um Zugriff auf alle Inhalte der Website zu erhalten. Wir werden Sie per E-Mail informieren, wenn alles fertig ist. ',
     auth_error_email_not_verified:
       'Wir haben Ihnen einen E-Mail-Link gesendet, um Ihr Konto zu aktivieren.',
-    auth_error_user_not_found: 'Uživatel s tímto e-mailem neexistuje',
+    auth_error_user_not_found: 'Es gibt keinen Benutzer mit dieser E-Mail.',
     auth_error_invalid_email_format: 'Ungültiges E-Mail-Format.',
     auth_error_invalid_grant: 'Ungültige E-Mail oder ungültiges Passwort.',
     auth_error_invalid_user_password:
@@ -176,8 +191,8 @@ module.exports = {
     auth_error_too_short_password: 'Passwort muss länger als 8 Zeichen sein',
     auth_error_unauthorized:
       'Ihr Konto wurde gesperrt. Wir haben Anweisungen zum weiteren Vorgang auf Ihre E-Mail gesendet. ',
-    auth_error_user_already_exists: 'Uživatel již exsituje',
-    auth_field_company: 'Společnost',
+    auth_error_user_already_exists: 'Benutzer existiert schon',
+    auth_field_company: 'Unternehmen',
     auth_field_email: 'Email',
     auth_field_name: 'Vor- und Nachname',
     auth_field_password: 'Passwort',
@@ -190,11 +205,14 @@ module.exports = {
     auth_login_page_title: 'Einloggen',
     auth_login_perex:
       'Melden Sie sich bei der Anwendung ŠKODA AUTO Logistics Innovation Brochure an.',
-    auth_request_change_password_header:
-      'Odeslali jsme vám e-mail pro změnu hesla',
     auth_request_change_password_page_title: 'Bitte um Änderung des Passworts',
+    auth_request_change_password_success_header:
+      'Wir haben Ihnen eine E-Mail gesendet, um Ihr Passwort zu ändern',
+    auth_request_change_password_success_perex:
+      'Sie finden einen Link, über den Sie Ihr Passwort in ein neues ändern können.',
+    auth_request_change_password_header: 'Passwort ändern',
     auth_request_change_password_perex:
-      'Najdete v něm odkaz, pod kterým si budete moci změnit heslo na nové.',
+      'Bitte geben Sie die E-Mail-Adresse ein, mit der Sie sich registriert haben.',
     auth_signup_form_header_login_data: 'Anmeldedaten',
     auth_signup_form_header_personal_data: 'Persönliche Daten',
     auth_signup_gdpr:
@@ -203,15 +221,15 @@ module.exports = {
     auth_signup_page_title: 'Registrierung',
     auth_signup_perex:
       'Nach der Registrierung genehmigen wir Ihr Konto, sodass Sie auf zusätzliche Informationen in der Anwendung zugreifen können.',
-    auth_signup_success_email_delivered: 'E-mail byl úspěšně odeslán.',
-    auth_signup_success_header: 'Nyní jste byli zaregistrováni',
-    auth_signup_success_link_resend_email: 'Znovu poslat potrvzovací odkaz.',
+    auth_signup_success_email_delivered: 'E-Mail wurde erfolgreich gesendet.',
+    auth_signup_success_header: 'Sie wurden jetzt registriert.',
+    auth_signup_success_link_resend_email: 'Bestätigungslink erneut senden.',
     auth_signup_success_perex:
-      'Pro ověření Vašeho účtu a přihlášení je nutné ve Vaší e-mailové schránce potrdit odkaz, který Vám byl právě zaslán.',
+      'Um Ihr Konto zu verifizieren und sich einzuloggen, ist es nötig, den Link zu bestätigen, den Sie gerade in Ihrer E-Mail-Box erhalten haben. ',
     authors: 'Autoren',
     best_innovations: 'beste Innovationen ',
     button_about: 'Über Logistik ŠKODA AUTO',
-    button_back: 'Zpět',
+    button_back: 'Zurück',
     button_change: 'Ändern',
     button_change_password: 'Passwort ändern',
     button_continue: 'Weiter',
@@ -220,15 +238,30 @@ module.exports = {
     button_more_info: 'Mehr Informationen',
     button_send: 'Senden',
     button_unblock: 'Entsperren',
-    button_login: 'Přihlásit se',
-    button_verify: 'Verifizieren',
+    button_login: 'Einloggen',
+    button_verify: 'Potvrdit',
+    button_register: 'Um sich zu registrieren',
     contact_author_of_project: 'Autor des Projekts',
     contact_garant_of_project: 'Garant des Projekts',
     contact_to_authors: 'Kontakt zu Autoren',
     contents: 'Inhalt',
     contents_about_link: 'Über ŠKODA AUTO Logistik',
+    locked: 'Innovation ist für die Öffentlichkeit nicht verfügbar',
     login: 'Einloggen',
     logout: 'Abmelden',
+    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_perex:
+      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
+    innovation_content_not_registered_header:
+      'Pro přístup k dalšímu obsahu se zaregistrujte nebo přihlašte',
+    innovation_content_not_registered_perex:
+      'Pokud se budete registrovat, tak Váš účet budeme ještě schvalovat. Poté budete mít přístup ke všem inovacím.',
+    innovation_content_blocked_header: 'Litujeme, Váš účet nebyl schválen',
+    innovation_content_blocked_perex:
+      'Stále můžete procházet všechny veřejně přístupné inovace',
+    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_perex:
+      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
     navbar_download_label: 'PDF herunterladen',
     navbar_search_label: 'Suchen',
     navbar_search_no_results: 'keine Ergebnisse',
@@ -280,7 +313,7 @@ module.exports = {
       "We will further approve your account to gain access to the whole site content. We'll let you know by email when everything is ready. ",
     auth_error_email_not_verified:
       "We've sent you an email link to activate your account, then it will be possible to log in.",
-    auth_error_user_not_found: 'Uživatel s tímto e-mailem neexistuje',
+    auth_error_user_not_found: 'No account found with that e-mail adress.',
     auth_error_invalid_email_format: 'Invalid email format.',
     auth_error_invalid_grant: 'Invalid email or password.',
     auth_error_invalid_user_password: 'Invalid email or password.',
@@ -299,8 +332,8 @@ module.exports = {
     auth_error_too_short_password: 'Password must be longer than 8 characters',
     auth_error_unauthorized:
       'Your account has been suspended. We have sent instructions on how to proceed to your e-mail. ',
-    auth_error_user_already_exists: 'Uživatel již exsituje',
-    auth_field_company: 'Společnost',
+    auth_error_user_already_exists: 'User already exists',
+    auth_field_company: 'Company',
     auth_field_email: 'Email',
     auth_field_name: 'Name and surname',
     auth_field_password: 'Password',
@@ -313,11 +346,14 @@ module.exports = {
     auth_login_page_title: 'Log in',
     auth_login_perex:
       'Log in to the ŠKODA AUTO Logistics Innovation Brochure application.',
-    auth_request_change_password_header:
-      'Odeslali jsme vám e-mail pro změnu hesla',
     auth_request_change_password_page_title: 'Password Change Request',
+    auth_request_change_password_success_header:
+      'We sent you an email to change your password',
+    auth_request_change_password_success_perex:
+      "You'll find a link to change your password to a new one.",
+    auth_request_change_password_header: 'Change your password',
     auth_request_change_password_perex:
-      'Najdete v něm odkaz, pod kterým si budete moci změnit heslo na nové.',
+      'Please enter the email address you registered with.',
     auth_signup_form_header_login_data: 'Login details',
     auth_signup_form_header_personal_data: 'Personal data',
     auth_signup_gdpr:
@@ -326,15 +362,15 @@ module.exports = {
     auth_signup_page_title: 'Registration',
     auth_signup_perex:
       'After registration, we will approve your account, which will allow you to access additional information in the application.',
-    auth_signup_success_email_delivered: 'E-mail byl úspěšně odeslán.',
-    auth_signup_success_header: 'Nyní jste byli zaregistrováni',
-    auth_signup_success_link_resend_email: 'Znovu poslat potrvzovací odkaz.',
+    auth_signup_success_email_delivered: 'E-mail was sent successfully.',
+    auth_signup_success_header: 'You have been registered now.',
+    auth_signup_success_link_resend_email: 'Resend confirmation link.',
     auth_signup_success_perex:
-      'Pro ověření Vašeho účtu a přihlášení je nutné ve Vaší e-mailové schránce potrdit odkaz, který Vám byl právě zaslán.',
+      'To verify your account and log in, it is necessary to confirm the link that has just been sent to you in your e-mail box.',
     authors: 'Authors',
     best_innovations: 'best innovations',
     button_about: 'About ŠKODA AUTO Logistics',
-    button_back: 'Zpět',
+    button_back: 'Back',
     button_change: 'Change',
     button_change_password: 'Change password',
     button_continue: 'Continue',
@@ -343,15 +379,30 @@ module.exports = {
     button_more_info: 'more information',
     button_send: 'send',
     button_unblock: 'Unblock',
-    button_login: 'Přihlásit se',
+    button_login: 'Log In',
     button_verify: 'Verify',
+    button_register: 'Register',
     contact_author_of_project: 'Author of project',
     contact_garant_of_project: 'Garant project',
     contact_to_authors: 'Contact to authors',
     contents: 'Content',
     contents_about_link: 'About ŠKODA AUTO Logistics',
+    locked: 'Innovation is not avaible for public',
     login: 'Log In',
     logout: 'Log out',
+    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_perex:
+      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
+    innovation_content_not_registered_header:
+      'Pro přístup k dalšímu obsahu se zaregistrujte nebo přihlašte',
+    innovation_content_not_registered_perex:
+      'Pokud se budete registrovat, tak Váš účet budeme ještě schvalovat. Poté budete mít přístup ke všem inovacím.',
+    innovation_content_blocked_header: 'Litujeme, Váš účet nebyl schválen',
+    innovation_content_blocked_perex:
+      'Stále můžete procházet všechny veřejně přístupné inovace',
+    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_perex:
+      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
     navbar_download_label: 'Download PDF',
     navbar_search_label: 'Search',
     navbar_search_no_results: 'No results found',

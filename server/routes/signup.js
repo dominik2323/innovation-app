@@ -24,6 +24,7 @@ router.route('/api/signup').post(async (req, res, next) => {
         user_metadata: {
           phone: req.body.phone,
           isAllowed: isUserAutoAllowed,
+          isBlocked: false,
         },
       },
       {

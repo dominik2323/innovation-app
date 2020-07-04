@@ -80,6 +80,15 @@ const Login = () => {
               <div className={`auth__wrap__intro`}>
                 <h1>{strings[lang].auth_login_header}</h1>
                 <p>{strings[lang].auth_login_perex}</p>
+                <a
+                  href={`#`}
+                  onClick={() =>
+                    Router.push('/[lang]/signup', `/${lang}/signup`)
+                  }
+                  className={`auth__wrap__sign-up`}
+                >
+                  {strings[lang].auth_login_cta}
+                </a>
               </div>
               {!!serverError && (
                 <div
@@ -122,15 +131,9 @@ const Login = () => {
                 >
                   {strings[lang].button_login}
                 </Button>
-                <a
-                  href={`#`}
-                  onClick={() =>
-                    Router.push('/[lang]/signup', `/${lang}/signup`)
-                  }
-                  className={`auth__wrap__sign-up`}
-                >
-                  {strings[lang].auth_login_cta}
-                </a>
+                <p className={`input__required-label`}>
+                  * {strings[lang].auth_field_label_required}
+                </p>
               </Form>
             </div>
           </div>

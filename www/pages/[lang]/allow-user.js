@@ -28,6 +28,7 @@ const AllowUser = () => {
         });
       })
       .catch((e) => {
+        console.log({ e });
         setStatus({
           isLoading: false,
           error: {

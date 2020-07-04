@@ -4,6 +4,7 @@
   $spinner-size: 1em;
   width: $spinner-size;
   height: $spinner-size;
+  flex-shrink: 0;
 }
 .loading {
   margin-right: 15px;
@@ -21,6 +22,12 @@
   transform: translateZ(0);
   -webkit-animation: load8 1.1s infinite linear;
   animation: load8 1.1s infinite linear;
+  &.green {
+    border-top: $spinner-border solid $green-h;
+    border-right: $spinner-border solid $green-h;
+    border-bottom: $spinner-border solid $green-h;
+    border-left: $spinner-border solid transparent;
+  }
 }
 @-webkit-keyframes load8 {
   0% {

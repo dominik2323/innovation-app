@@ -22,7 +22,7 @@ function sendEmailTemplate({
 
   return sgMail.send({
     to: sendTo,
-    from: 'skoda.inolog@gmail.com',
+    from: 'no-reply@inolog.cz',
     subject: subject,
     html: emailVerificationTemplate,
   });

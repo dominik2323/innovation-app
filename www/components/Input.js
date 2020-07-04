@@ -20,9 +20,7 @@ const Input = ({
     <div className={`input ${hasError ? `has-error` : ``}`}>
       <label htmlFor={props.id}>
         <span>{props.label}</span>
-        <span className={`required`}>
-          {required && `\u00a0*${strings[lang].auth_field_label_required}`}
-        </span>
+        <span className={`required`}>{required && `\u00a0*`}</span>
         {Hint && (
           <span className={`hint`}>
             <Hint />

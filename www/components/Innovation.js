@@ -5,6 +5,9 @@ import InnovationContents from './InnovationContents';
 import InnovationBg from './InnovationBg';
 import InnovationUi from './InnovationUi';
 import { useViewportDimensions } from '../hooks/useViewportDimensions';
+import { selectInnovationById } from '../helpers/selectInnovationById';
+import { DataContext } from '../helpers/dataContext';
+import { useAuth } from '../hocs/auth';
 
 const transition = {
   type: 'spring',
@@ -31,7 +34,13 @@ const variants = {
 
 const Innovation = () => {
   const { activeInnovationId } = useSelector((state) => state);
+  const { innovations } = React.useContext(DataContext);
+  const { is_secret } = selectInnovationById(innovations, activeInnovationId);
+  const { isAllowed } = useAuth();
   const { w, h } = useViewportDimensions();
+
+  if (!!activeInnovationId && !isAllowed && is_secret) return null;
+
   return (
     <div className={`innovation`}>
       <InnovationContents

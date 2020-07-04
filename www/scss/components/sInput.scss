@@ -1,6 +1,12 @@
 .input {
   margin: auto;
   margin-bottom: 25px;
+  &__required-label {
+    margin-top: 25px;
+    font-size: 14px;
+    color: $green;
+    letter-spacing: 0.05em;
+  }
   label {
     display: block;
     margin-bottom: 5px;
