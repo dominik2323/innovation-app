@@ -1,7 +1,8 @@
 import React from 'react';
 import Router, { useRouter } from 'next/router';
 
-import { appLangs } from '../helpers/consts';
+import { useViewportDimensions } from '../hooks/useViewportDimensions';
+import { APP_LANGS } from '../../globals/appLangs';
 
 const langNames = {
   cs: 'CZ',
@@ -11,20 +12,21 @@ const langNames = {
 
 const NavbarControlsLang = () => {
   const [showDropdown, toggleDropdown] = React.useState(false);
-  const langKeys = Object.keys(appLangs);
+  const langKeys = Object.keys(APP_LANGS);
   const router = useRouter();
+  const { w } = useViewportDimensions();
   const inactiveLangs = langKeys.filter((lang) => lang !== router.query.lang);
 
   return (
     <div className={`navbar-controls__item navbar-lang`}>
       <div
         className={`navbar-lang__active-lang
-        ${showDropdown && window.innerWidth > 900 ? `active` : ``}`}
+        ${showDropdown && w > 900 ? `active` : ``}`}
         onClick={() => toggleDropdown((prevState) => !prevState)}
       >
         {langNames[langKeys.find((lang) => lang === router.query.lang)]}
       </div>
-      {(showDropdown || window.innerWidth <= 900) && (
+      {(showDropdown || w <= 900) && (
         <div className={`navbar-lang__dropdown`}>
           {inactiveLangs.map((lang) => (
             <div

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import strings from '../../globals/strings';
+import strings from '../../globals/strings.json';
 
 export const DataContext = React.createContext();
 

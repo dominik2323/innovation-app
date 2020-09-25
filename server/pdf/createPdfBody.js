@@ -8,7 +8,7 @@ const {
   toMm,
   addNewPage,
 } = require('./helpers/index.js');
-const strings = require('../../globals/strings');
+const strings = require('../../globals/strings.json');
 
 module.exports = async (doc, data, lang) => {
   const {
@@ -19,9 +19,7 @@ module.exports = async (doc, data, lang) => {
     about,
     authors,
     slideshow,
-  } = data.innovationData;
-
-  const humans = data.humansData;
+  } = data;
 
   /*    heading    */
   doc.font(fontPath('Black')).fontSize(28).text(innovationname);
@@ -59,42 +57,42 @@ module.exports = async (doc, data, lang) => {
 
   // /*    authors    */
 
-  function getAuthorsData() {
-    const findAuthor = (authorUid) => {
-      return humans.find((human) => human.uid === authorUid);
-    };
-    return authors.map((author) => ({
-      ...findAuthor(author.humans.uid)['data'],
-      isGarant: author.role === `Garant`,
-    }));
-  }
+  // function getAuthorsData() {
+  //   const findAuthor = (authorUid) => {
+  //     return humans.find((human) => human.uid === authorUid);
+  //   };
+  //   return authors.map((author) => ({
+  //     ...findAuthor(author.humans.uid)['data'],
+  //     isGarant: author.role === `Garant`,
+  //   }));
+  // }
 
-  const authorsData = getAuthorsData();
+  // const authorsData = getAuthorsData();
 
-  const enhancedAuthors = authorsData.map(
-    ({ name, phone, email, img, isGarant }, i) => async () => {
+  if (authors) {
+    const enhancedAuthors = authors.map(({ role, humans }, i) => async () => {
       addNewPage(doc, toMm(20), doc.y);
       i === 0 && (doc.moveDown(1), Header(doc, strings[lang].authors));
       doc
-        .image(await getImageAsBuffer(img.url), toMm(15), doc.y, {
+        .image(await getImageAsBuffer(humans.img.url), toMm(15), doc.y, {
           fit: [toMm(20), toMm(20)],
         })
         .fontSize(9)
         .font(fontPath(`Regular`))
         .text(
-          `${name}\n${
-            isGarant
+          `${humans.name}\n${
+            role === `Garant`
               ? strings[lang].contact_garant_of_project
               : strings[lang].contact_author_of_project
-          }\n${email}\n${phone}`,
+          }\n${humans.email}\n${humans.phone}`,
           toMm(40),
           doc.y - toMm(16)
         )
         .moveDown(2);
-    }
-  );
+    });
 
-  await resolvePromises(enhancedAuthors);
+    await resolvePromises(enhancedAuthors);
+  }
 
   /*    slideshow    */
   const slideshowPromises = slideshow.map((img, i) => {

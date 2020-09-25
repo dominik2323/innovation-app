@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import Button from '../../components/Button';
 import Error from 'next/error';
 import Header from '../../components/Header';
-import strings from '../../../globals/strings';
+import strings from '../../../globals/strings.json';
 import View from '../../components/View';
+import { DataContext } from '../../helpers/dataContext';
 
 const VerifyEmail = () => {
   const router = useRouter();
@@ -41,35 +42,39 @@ const VerifyEmail = () => {
   if (error) return <Error statusCode={error.status} title={error.message} />;
 
   return (
-    <View>
-      <Header descriptor={strings[lang].auth_email_verification_page_title} />
-      <div className={`auth`}>
-        <div className={`auth__wrap`}>
-          {isLoading ? (
-            <div className={`auth__wrap__intro`}>
-              <h1>{strings[lang].auth_email_verification_loading_header}</h1>
-            </div>
-          ) : (
-            <>
+    <DataContext.Provider value={{ components: strings[lang] }}>
+      <View>
+        <Header descriptor={strings[lang].auth_email_verification_page_title} />
+        <div className={`auth`}>
+          <div className={`auth__wrap`}>
+            {isLoading ? (
               <div className={`auth__wrap__intro`}>
-                <h1>{strings[lang].auth_email_verification_success_header}</h1>
-                <p>{strings[lang].auth_email_verification_success_perex}</p>
+                <h1>{strings[lang].auth_email_verification_loading_header}</h1>
               </div>
-              <div className={``}>
-                <Button
-                  className={`btn__primary`}
-                  handleClick={() =>
-                    router.push(`/[lang]/login`, `/${lang}/login`)
-                  }
-                >
-                  {strings[lang].button_continue}
-                </Button>
-              </div>
-            </>
-          )}
+            ) : (
+              <>
+                <div className={`auth__wrap__intro`}>
+                  <h1>
+                    {strings[lang].auth_email_verification_success_header}
+                  </h1>
+                  <p>{strings[lang].auth_email_verification_success_perex}</p>
+                </div>
+                <div className={``}>
+                  <Button
+                    className={`btn__primary`}
+                    handleClick={() =>
+                      router.push(`/[lang]/login`, `/${lang}/login`)
+                    }
+                  >
+                    {strings[lang].button_continue}
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </View>
+      </View>
+    </DataContext.Provider>
   );
 };
 

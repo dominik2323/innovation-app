@@ -8,7 +8,7 @@ const NavbarControlsShare = () => {
   const [showCopyPopup, toggleCopyPopup] = React.useState(false);
   const { components } = React.useContext(DataContext);
   return (
-    <React.Fragment>
+    <>
       <CopyToClipboard
         onCopy={() => {
           toggleCopyPopup(true);
@@ -27,7 +27,7 @@ const NavbarControlsShare = () => {
         show={showCopyPopup}
         onFinish={() => setTimeout(() => toggleCopyPopup(false), 1000)}
       />
-    </React.Fragment>
+    </>
   );
 };
 

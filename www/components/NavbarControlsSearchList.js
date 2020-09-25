@@ -49,15 +49,15 @@ const NavbarControlsSearchList = ({
           />
           {filteredItems.length > 0 ? (
             <Scrollbar vTrackStyle={{ right: 17, top: 0, left: `initial` }}>
-              {filteredItems.map(({ innovationname, id, uid }) => (
+              {filteredItems.map(({ node }) => (
                 <h3
                   onClick={() => {
-                    selectProject(uid);
+                    selectProject(node._meta.uid);
                     resetQuery();
                   }}
-                  key={id}
+                  key={node._meta.uid}
                 >
-                  {innovationname}
+                  {node.innovationname}
                 </h3>
               ))}
             </Scrollbar>

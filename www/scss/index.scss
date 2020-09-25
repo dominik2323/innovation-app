@@ -4,6 +4,8 @@
 @import './normalize/normalize';
 @import './normalize/typo';
 
+@import '~hamburgers/_sass/hamburgers/hamburgers.scss';
+
 @import './components/sNavbar';
 @import './components/sIntro';
 @import './components/sButton';

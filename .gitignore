@@ -3,3 +3,5 @@ www/public/
 server/.env
 www/.next/
 .vercel
+.vscode
+server/routes/testApi.http

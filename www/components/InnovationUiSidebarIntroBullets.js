@@ -28,7 +28,7 @@ const InnovationUiSidebarIntroBullets = () => {
     <div className={`${classNamePrefix}__bullets`}>
       <div className={`${classNamePrefix}__bullets__list`}>
         <h3>{motivationHeader}</h3>
-        {motivation.map((bullet, i) => (
+        {motivation?.map((bullet, i) => (
           <InnovationUiSidebarIntroBulletsBullet
             bullet={bullet.text}
             index={i}
@@ -38,7 +38,7 @@ const InnovationUiSidebarIntroBullets = () => {
       </div>
       <div className={`${classNamePrefix}__bullets__list`}>
         <h3>{benefitsHeader}</h3>
-        {benefits.map((bullet, i) => (
+        {benefits?.map((bullet, i) => (
           <InnovationUiSidebarIntroBulletsBullet
             bullet={bullet.text}
             index={i}
@@ -51,27 +51,3 @@ const InnovationUiSidebarIntroBullets = () => {
 };
 
 export default InnovationUiSidebarIntroBullets;
-
-// animated numbers
-/*<div
-            className={`${classNamePrefix}__benefits__content__item`}
-            key={i}
-          >
-            <div
-              className={`${classNamePrefix}__benefits__content__item__number `}
-            >
-              <CountUp
-                key={i}
-                end={value}
-                formattingFn={number =>
-                  `${number.toLocaleString('cs-CS')}\u00a0${unit}`
-                }
-                duration={3}
-              />
-            </div>
-            <div
-              className={`${classNamePrefix}__benefits__content__item__name `}
-            >
-              <p>{name}</p>
-            </div>
-          </div>*/

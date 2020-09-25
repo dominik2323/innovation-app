@@ -1,6 +1,6 @@
 import React from 'react';
 import Img from './Img';
-import { useKeyPress } from '../hooks/useKeyPress';
+// import { useKeyPress } from '../hooks/useKeyPress';
 import { useSelector, useDispatch } from 'react-redux';
 import Router, { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
@@ -13,51 +13,41 @@ import {
   toggleNavbarDownload,
 } from '../store/actions';
 import { DataContext } from '../helpers/dataContext';
+import { selectInnovationById } from '../helpers/selectInnovationById';
 
 const NavbarToggler = ({ controlsVariants, showControls }) => {
-  const [index, setIndex] = React.useState(0);
-  const dispatch = useDispatch();
-  const leftArrow = useKeyPress('ArrowLeft');
-  const rightArrow = useKeyPress('ArrowRight');
-  const router = useRouter();
-  const activeInnovationId = useSelector((state) => state.activeInnovationId);
   const { innovations } = React.useContext(DataContext);
-
+  const { activeInnovationId } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const router = useRouter();
   const changeInnovationAction = changeInnovation(dispatch);
-  const formatedPos = (pos) => (pos <= 9 ? `0${pos}` : pos);
 
-  const handleInnovationChange = (direction) => {
-    const nextPossiblePosition = index + direction;
-    let nextPosition;
-    if (nextPossiblePosition < 0) {
-      nextPosition = 0;
-    } else if (nextPossiblePosition >= innovations.length - 1) {
-      nextPosition = innovations.length - 1;
-    } else {
-      nextPosition = nextPossiblePosition;
+  const currInnovationIndex = selectInnovationById(
+    innovations,
+    activeInnovationId
+  ).order;
+
+  const [currentIndex, setCurrentIndex] = React.useState(currInnovationIndex);
+
+  const handleInnovationChange = (direction, distance = 1) => {
+    const nextIndex = currInnovationIndex + direction * distance;
+    const nextInnovation = innovations.find(
+      ({ node }) => node.order === nextIndex
+    );
+
+    if (innovations.length < nextIndex || nextIndex < 0) return;
+
+    if (!nextInnovation) {
+      handleInnovationChange(direction, distance + 1);
+      return;
     }
-    const nextActiveId = innovations[nextPosition].uid;
-    changeInnovationAction(nextActiveId, router.query.lang);
+
+    changeInnovationAction(nextInnovation.node._meta.uid, router.query.lang);
   };
 
-  /*                                    */
-  /*    set current index in toggler    */
-  /*                                    */
-
   React.useEffect(() => {
-    const currIndex = innovations.findIndex(
-      (innovation) => innovation.uid === activeInnovationId
-    );
-    setIndex(currIndex);
+    setCurrentIndex(currInnovationIndex);
   }, [activeInnovationId]);
-
-  React.useEffect(() => {
-    // if (leftArrow) {
-    //   handleInnovationChange(-1);
-    // } else if (rightArrow) {
-    //   handleInnovationChange(1);
-    // }
-  }, [leftArrow, rightArrow]);
 
   return (
     <motion.div
@@ -71,8 +61,10 @@ const NavbarToggler = ({ controlsVariants, showControls }) => {
         className={`navbar__toggler__btn`}
         onClick={() => handleInnovationChange(-1)}
       />
-      <span className={`navbar__toggler__pos`}>{formatedPos(index + 1)}</span>
-      <span className={`navbar__toggler__len`}>\ {innovations.length}</span>
+      <span className={`navbar__toggler__pos`}>
+        {currentIndex >= 10 ? currentIndex : `0${currentIndex}`}
+      </span>
+      <span className={`navbar__toggler__len`}>\ {innovations?.length}</span>
       <Img
         src={`/static/icons/plus.svg`}
         className={`navbar__toggler__btn`}

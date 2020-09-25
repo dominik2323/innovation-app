@@ -14,6 +14,8 @@
   z-index: 99;
   &__brand img {
     cursor: pointer;
+    height: 35px;
+    width: auto;
   }
   &__controls {
     display: flex;
@@ -118,7 +120,11 @@
 
   @include phone-down {
     &__brand img {
-      width: 170px;
+      // width: 170px;
+      height: 30px;
+    }
+    &__controls {
+      justify-content: flex-start;
     }
   }
 }

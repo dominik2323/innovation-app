@@ -15,7 +15,7 @@ import Scrollbar from './Scrollbar';
 import Img from './Img';
 import Button from './Button';
 import { useAuth } from '../hocs/auth';
-import strings from '../../globals/strings';
+import strings from '../../globals/strings.json';
 
 const InnovationContents = ({ ...props }) => {
   const { components, innovations } = React.useContext(DataContext);
@@ -62,11 +62,11 @@ const InnovationContents = ({ ...props }) => {
     };
   }, []);
 
-  const InnovationContent = ({ id, uid, innovationname }, i) => {
+  const InnovationContent = ({ _meta, innovationname }, i) => {
     return (
       <motion.div
-        key={id}
-        id={uid}
+        key={_meta.id}
+        id={_meta.uid}
         className={`innovation-contents__contents__item allowed`}
         variants={{
           initial: { opacity: 0 },
@@ -114,7 +114,7 @@ const InnovationContents = ({ ...props }) => {
                   handleClick={() =>
                     router.push(`/[lang]/login`, `/${lang}/login`)
                   }
-                  className={`btn__secondary--green`}
+                  className={`btn__secondary btn__secondary--green`}
                 >
                   {strings[lang].button_login}
                 </Button>
@@ -130,11 +130,13 @@ const InnovationContents = ({ ...props }) => {
             </div>
           )}
 
-          {innovations.map((props, i) => {
-            if (!props.is_secret) return InnovationContent(props, i);
-            if (isAllowed && !isBlocked) return InnovationContent(props, i);
+          {innovations.map(({ node }, i) => {
+            if (Object.values(node).length !== 0) {
+              return InnovationContent(node, i);
+            }
             return (
               <div
+                key={i}
                 className={`innovation-contents__contents__item not-allowed`}
               >
                 <span>{i < 9 ? `0${i + 1}` : i + 1}</span>

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { sendEmailTemplate } = require('../helpers/sendEmailTemplate');
 const jwt = require('jsonwebtoken');
-const strings = require('../../globals/strings');
+const strings = require('../../globals/strings.json');
 const absoluteUrl = require('../../www/helpers/absoluteUrl');
 
 router.route('/api/resend-email').post(async (req, res, next) => {
@@ -9,7 +9,6 @@ router.route('/api/resend-email').post(async (req, res, next) => {
   const lang = req.query.lang || 'en';
   try {
     const { email, name } = jwt.verify(req.body.token, process.env.JWT_SECRET);
-    // TODO: send response with original response from sendgrid
     await sendEmailTemplate({
       content: {
         header: strings[lang].auth_email_verification_header,

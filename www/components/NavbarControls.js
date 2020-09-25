@@ -22,7 +22,7 @@ import {
 
 const NavbarControls = ({ controlsVariants, showControls }) => {
   const { components } = React.useContext(DataContext);
-  const { showPhoneMenu } = useSelector(state => state);
+  const { showPhoneMenu } = useSelector((state) => state);
   const dispatch = useDispatch();
   const router = useRouter();
   const showContentsAction = showContents(dispatch);
@@ -47,7 +47,7 @@ const NavbarControls = ({ controlsVariants, showControls }) => {
               dispatch(togglePhoneMenu(false));
             }}
           >
-            {components.contents}
+            {components?.contents}
           </span>
         </div>
       )}
@@ -59,7 +59,7 @@ const NavbarControls = ({ controlsVariants, showControls }) => {
 
 export default NavbarControls;
 
-const showContents = dispatch => lang => {
+const showContents = (dispatch) => (lang) => {
   dispatch(setCurrentSlideshowIndex(0));
   dispatch(toggleSidebar(`hide`));
   dispatch(toggleNavbarSearch(false));

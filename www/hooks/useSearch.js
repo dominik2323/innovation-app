@@ -1,39 +1,47 @@
-import React from "react";
-import { DataContext } from "../helpers/dataContext";
+import React from 'react';
+import { DataContext } from '../helpers/dataContext';
+import { parseCookies } from 'nookies';
+import absoluteUrl from '../helpers/absoluteUrl';
+import { useRouter } from 'next/router';
+import Axios from 'axios';
 
 export function useSearch(query) {
   const [filteredItems, setFilteredItems] = React.useState([]);
-  const { innovations, humans } = React.useContext(DataContext);
+  const { innovations: propsInnovations } = React.useContext(DataContext);
+  const [innovations, setInnovations] = React.useState(propsInnovations);
+  const router = useRouter();
 
-  React.useEffect(() => {
-    if (query.length > 2) {
-      const regex = new RegExp(query, "i");
-      const testString = string => regex.test(string);
-
-      const filterHumans = humans.filter(({ name }) => testString(name));
-      const filterHumansIds = filterHumans.map(human => human.id);
-      console.log(filterHumansIds);
-
-      const matches = innovations.filter(
-        ({ innovationname, about, authors }) => {
-          const nameMatch = testString(innovationname);
-
-          const aboutTextMatch = about.reduce((acc, curr) => {
-            if (typeof curr.text === `string`) {
-              return testString(curr.text) || acc;
-            }
-            return acc;
-          }, false);
-
-          const humanMatch = authors.reduce((acc, curr) => {
-            return filterHumansIds.includes(curr.humans.id) || acc;
-          }, false);
-
-          return nameMatch || aboutTextMatch || humanMatch;
-        }
+  async function fetchInnovations() {
+    const baseUrl = absoluteUrl(null, `localhost:9999`);
+    const token = parseCookies().userData || ``;
+    const lang = router.query.lang || `en`;
+    try {
+      const res = await Axios.get(
+        `${baseUrl}api/v2/get-innovations?lang=${lang}&token=${token}`
       );
+      setInnovations(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  React.useEffect(() => {
+    if (!innovations) {
+      fetchInnovations();
+    }
+    if (query.length > 2) {
+      try {
+        // return empty arr, when the query breaks regexp with special characters
+        const regex = new RegExp(escape(query), 'ig');
+        const testString = (string) => regex.test(string);
 
-      setFilteredItems(matches);
+        const matches = innovations.filter((innovation) => {
+          return testString(JSON.stringify(innovation));
+        });
+
+        setFilteredItems(matches);
+      } catch (err) {
+        setFilteredItems([]);
+      }
     } else {
       setFilteredItems([]);
     }

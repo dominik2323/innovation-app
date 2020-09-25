@@ -26,7 +26,7 @@ const InnovationUiSlider = () => {
     innovations,
     activeInnovationId
   );
-  const numOfInnovations = currentInnovation.slideshow.length;
+  const numOfInnovations = currentInnovation?.slideshow?.length;
 
   const handleIndexChange = (type) => {
     const direction = type === `DEC` ? -1 : 1;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 const { sendEmailTemplate } = require('../helpers/sendEmailTemplate');
-const strings = require('../../globals/strings');
+const strings = require('../../globals/strings.json');
 const jwt = require('jsonwebtoken');
 const absoluteUrl = require('../../www/helpers/absoluteUrl');
 const { createError } = require('../helpers/createError');

@@ -3,7 +3,7 @@ const axios = require('axios');
 const { sendEmailTemplate } = require('../helpers/sendEmailTemplate');
 const jwt = require('jsonwebtoken');
 const absoluteUrl = require('../../www/helpers/absoluteUrl');
-const strings = require('../../globals/strings');
+const strings = require('../../globals/strings.json');
 
 router.route('/api/signup').post(async (req, res, next) => {
   const lang = req.query.lang || 'en';

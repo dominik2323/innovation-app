@@ -18,7 +18,7 @@
       position: absolute;
       top: cols(0.8);
       right: cols(1);
-      background-image: url("/static/icons/searchClose.svg");
+      background-image: url('/static/icons/searchClose.svg');
       background-repeat: no-repeat;
       background-position: center;
       cursor: pointer;
@@ -56,6 +56,7 @@
     font-size: 18px;
     border-bottom: 2px solid $dark-gray;
     transition: all 0.2s ease-in-out;
+    outline: none;
     margin-right: 10px;
     &:focus {
       border-bottom: 2px solid $green;

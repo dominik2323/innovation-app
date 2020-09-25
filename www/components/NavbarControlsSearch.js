@@ -28,7 +28,7 @@ const NavbarControlsSearch = () => {
       >
         <Img src={`/static/icons/search.svg`} />
         <span className={`navbar__controls__item__label`}>
-          {components.navbar_search_label}
+          {components?.navbar_search_label}
         </span>
       </div>
       {showNavbarSearch && (

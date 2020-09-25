@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 const { updateUserData } = require('../helpers/updateUserData');
-const strings = require('../../globals/strings');
+const strings = require('../../globals/strings.json');
 const jwt = require('jsonwebtoken');
 
 router.route('/api/change-password').post(async (req, res, next) => {

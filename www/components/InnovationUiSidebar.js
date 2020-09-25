@@ -21,16 +21,11 @@ const transition = {
   velocity: 1,
 };
 const InnovationUiSidebar = () => {
-  const { innovations } = React.useContext(DataContext);
   const ref = React.useRef(null);
   const [showScrollTop, toggleScrollToTop] = React.useState(false);
   const dispatch = useDispatch();
   const { activeInnovationId, showSidebar } = useSelector((state) => state);
   const { w } = useViewportDimensions();
-  const { innovationName, perex, benefits } = selectInnovationById(
-    innovations,
-    activeInnovationId
-  );
 
   const sidebarVariants = {
     show: { x: '0%', transition },

@@ -4,13 +4,6 @@ export const VIEW_HEIGHT = `100vh - ${TOPBAR_HEIGHT}px`;
 export const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i;
 export const passwordRegexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/i;
 
-export const appLangs = {
-  cs: 'cs-cz',
-  de: 'de-de',
-  en: 'en-gb',
-};
-// export const defaultAppLang = 'en';
-
 export const VH = (frag = 1) => {
   if (process.browser) {
     return window.innerHeight * frag;

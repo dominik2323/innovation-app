@@ -1,6 +1,6 @@
 import React from 'react';
 import { useField } from 'formik';
-import strings from '../../globals/strings';
+import strings from '../../globals/strings.json';
 import { useRouter } from 'next/router';
 
 const Input = ({

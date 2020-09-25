@@ -26,13 +26,12 @@ const Human = ({ img, name, phone, email, isGarant }) => {
 };
 
 const InnovationUiSidebarDetailAuthors = () => {
-  const { humans, innovations, components } = React.useContext(DataContext);
+  const { innovations, components } = React.useContext(DataContext);
   const ref = React.useRef(null);
   const dispatch = useDispatch();
   const activeInnovationId = useSelector((state) => state.activeInnovationId);
 
-  const { authors } = selectInnovationById(innovations, activeInnovationId);
-  const authorsData = authors.map((author) => findAuthor(author, humans));
+  const innovation = selectInnovationById(innovations, activeInnovationId);
 
   const classNamePrefix = `innovation-ui__sidebar__content__detail__wrapper`;
 
@@ -44,29 +43,29 @@ const InnovationUiSidebarDetailAuthors = () => {
       observer.observe(ref.current);
     }
     return () => {
-      observer.unobserve(ref.current);
+      ref.current && observer.unobserve(ref.current);
     };
   }, []);
 
-  // if (authorsData.length === 0) return null;
+  if (!innovation?.authors) return null;
   return (
     <div ref={ref} className={`${classNamePrefix}__authors`}>
-      {authorsData.length === 0 ? null : (
-        <React.Fragment>
+      {innovation.authors.length === 0 ? null : (
+        <>
           <h3>{components.authors}</h3>
           <div className={`${classNamePrefix}__authors__list`}>
-            {authorsData.map(({ name, phone, email, img, id, isGarant }, i) => (
+            {innovation.authors.map(({ humans, role }, i) => (
               <Human
-                name={name}
-                phone={phone}
-                isGarant={isGarant}
-                email={email}
-                img={img}
-                key={`${id}-${i}`}
+                name={humans.name}
+                phone={humans.phone}
+                isGarant={role === `Garant`}
+                email={humans.email}
+                img={humans.img}
+                key={`${humans._meta.id}-${i}`}
               />
             ))}
           </div>
-        </React.Fragment>
+        </>
       )}
     </div>
   );

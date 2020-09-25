@@ -1,17 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 
 import { togglePhoneMenu } from '../store/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Img from './Img';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
 import NavbarControls from './NavbarControls';
-
-import { DataContext } from '../helpers/dataContext';
-import { appLangs } from '../helpers/consts';
+import { useViewportDimensions } from '../hooks/useViewportDimensions';
 
 const controlsVariants = {
   show: { opacity: 1, display: `flex` },
@@ -33,26 +28,34 @@ const Navbar = ({
     contents: showContents,
     search: showSearch,
   };
+  const { w } = useViewportDimensions();
 
   return (
     <nav className={`navbar`}>
       <NavbarBrand />
-      <NavbarToggler
-        controlsVariants={controlsVariants}
-        showControls={showToggler}
-      />
+      {showToggler && (
+        <NavbarToggler
+          controlsVariants={controlsVariants}
+          showControls={showToggler}
+        />
+      )}
       <NavbarControls
         controlsVariants={controlsVariants}
         showControls={showControls}
       />
-
-      <motion.div
-        initial={false}
-        className={`navbar__burger`}
-        onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}
-      >
-        <Img className={``} src={`/static/icons/burger.svg`} />
-      </motion.div>
+      {w <= 900 && (
+        <button
+          className={`hamburger hamburger--slider ${
+            showPhoneMenu ? `is-active` : ``
+          }`}
+          onClick={() => dispatch(togglePhoneMenu(!showPhoneMenu))}
+          type='button'
+        >
+          <span className='hamburger-box'>
+            <span className='hamburger-inner'></span>
+          </span>
+        </button>
+      )}
     </nav>
   );
 };

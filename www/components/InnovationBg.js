@@ -32,7 +32,7 @@ const InnovationBg = ({ ...props }) => {
     activeInnovationId
   );
   const changeSlideAction = changeSlide(dispatch);
-  const numOfInnovations = currentInnovation.slideshow.length;
+  const numOfInnovations = currentInnovation?.slideshow?.length;
 
   const handleSlideChange = (directionY) => {
     const normalDirection = directionY < 0 ? 1 : -1;

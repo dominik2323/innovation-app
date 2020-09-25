@@ -31,6 +31,15 @@ module.exports = {
     auth_email_verification_success_header: 'Váš e-mail jsme úspěšně ověřili',
     auth_email_verification_success_perex:
       'Váš účet ještě budeme dále schvalovat, abyste získali přístup k celému obsahu webu. Až bude vše připraveno, budeme vás informovat e-mailem.',
+    auth_email_user_verified_header: 'Nyní máte interní verzi brožury',
+    auth_email_user_verified_instructions:
+      'Pro správné zobrazení brožury se stačí odhlásit a znovu přihlásit.',
+    auth_email_user_verified_subject: 'Váš účet byl schválen pro interní verzi',
+    auth_email_user_blocked_header: 'Váš účet neprošel schvalovacím procesem',
+    auth_email_user_blocked_instructions:
+      'Stále můžete procházet všechny veřejně přístupné inovace. Pokud se jedná o chybu, můžete nás kontaktovat.',
+    auth_email_user_blocked_subject:
+      'Váš účet nebyl schválen pro interní verzi',
     auth_error_email_not_verified:
       'Na e-mail jsme Vám odeslali odkaz, kterým si aktivujete účet, poté bude možné se přihlásit. ',
     auth_error_user_not_found: 'Uživatel s tímto e-mailem neexistuje',
@@ -100,6 +109,7 @@ module.exports = {
     button_send: 'odeslat',
     button_unblock: 'Odblokovat',
     button_login: 'Přihlásit se',
+    button_contact_us: 'Kontaktujte nás',
     button_verify: 'Ověřit',
     button_register: 'Registrovat se',
     contact_author_of_project: 'Autor projektu',
@@ -133,6 +143,8 @@ module.exports = {
     sidebar_benefits: 'Benefity',
     sidebar_download_label: 'Ke stažení',
     sidebar_motivation: 'Motivace',
+    page_title: 'Inovační brožura Logistiky ŠKODA AUTO',
+    page_title_about: 'O Logistice ŠKODA AUTO',
     unauthorized: 'Váš účet ještě nebyl schválený.',
   },
   de: {
@@ -169,6 +181,15 @@ module.exports = {
       'Wir haben Ihre E-Mail erfolgreich verifiziert',
     auth_email_verification_success_perex:
       'Wir werden Ihr Konto weiter genehmigen, um Zugriff auf alle Inhalte der Website zu erhalten. Wir werden Sie per E-Mail informieren, wenn alles fertig ist. ',
+    auth_email_user_verified_header: 'Nyní máte interní verzi brožury',
+    auth_email_user_verified_instructions:
+      'Pro správné zobrazení brožury se stačí odhlásit a znovu přihlásit.',
+    auth_email_user_verified_subject: 'Váš účet byl schválen pro interní verzi',
+    auth_email_user_blocked_header: 'Váš účet neprošel schvalovacím procesem',
+    auth_email_user_blocked_instructions:
+      'Stále můžete procházet všechny veřejně přístupné inovace. Pokud se jedná o chybu, můžete nás kontaktovat.',
+    auth_email_user_blocked_subject:
+      'Váš účet nebyl schválen pro interní verzi',
     auth_error_email_not_verified:
       'Wir haben Ihnen einen E-Mail-Link gesendet, um Ihr Konto zu aktivieren.',
     auth_error_user_not_found: 'Es gibt keinen Benutzer mit dieser E-Mail.',
@@ -239,6 +260,7 @@ module.exports = {
     button_send: 'Senden',
     button_unblock: 'Entsperren',
     button_login: 'Einloggen',
+    button_contact_us: 'Kontaktujte nás',
     button_verify: 'Potvrdit',
     button_register: 'Um sich zu registrieren',
     contact_author_of_project: 'Autor des Projekts',
@@ -246,22 +268,20 @@ module.exports = {
     contact_to_authors: 'Kontakt zu Autoren',
     contents: 'Inhalt',
     contents_about_link: 'Über ŠKODA AUTO Logistik',
-    locked: 'Innovation ist für die Öffentlichkeit nicht verfügbar',
+    locked: 'Die Innovation ist nicht öffentlich zugänglich.',
     login: 'Einloggen',
     logout: 'Abmelden',
-    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_header:
+      'Ihr Konto ist zurzeit in Genehmigung',
     innovation_content_not_allowed_perex:
-      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
+      'Sie werden über die Genehmigung per E-Mail informiert und danach kriegen Sie einen Zugriff zu allen Innovationen. - Your account is currently in authorization. We will inform you via email about the authorization and you will gain access to all innovations then.',
     innovation_content_not_registered_header:
-      'Pro přístup k dalšímu obsahu se zaregistrujte nebo přihlašte',
+      'Für Zugriff zum weiteren Inhalt registrieren Sie sich oder melden Sie sich an',
     innovation_content_not_registered_perex:
-      'Pokud se budete registrovat, tak Váš účet budeme ještě schvalovat. Poté budete mít přístup ke všem inovacím.',
+      'Nach der Registration werden wir Ihr Konto weiter genehmigen. Danach werden sie Zugriff zu allen Innovationen haben.',
     innovation_content_blocked_header: 'Litujeme, Váš účet nebyl schválen',
     innovation_content_blocked_perex:
       'Stále můžete procházet všechny veřejně přístupné inovace',
-    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
-    innovation_content_not_allowed_perex:
-      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
     navbar_download_label: 'PDF herunterladen',
     navbar_search_label: 'Suchen',
     navbar_search_no_results: 'keine Ergebnisse',
@@ -275,6 +295,8 @@ module.exports = {
     sidebar_benefits: 'Benefits',
     sidebar_download_label: 'Herunterladen',
     sidebar_motivation: 'Motivation',
+    page_title: 'Inovační brožura Logistiky ŠKODA AUTO',
+    page_title_about: 'O Logistice ŠKODA AUTO',
     unauthorized: 'Ihr Konto wurd nicht genehmigt.',
   },
   en: {
@@ -311,6 +333,15 @@ module.exports = {
       'We have successfully verified your email',
     auth_email_verification_success_perex:
       "We will further approve your account to gain access to the whole site content. We'll let you know by email when everything is ready. ",
+    auth_email_user_verified_header: 'Nyní máte interní verzi brožury',
+    auth_email_user_verified_instructions:
+      'Pro správné zobrazení brožury se stačí odhlásit a znovu přihlásit.',
+    auth_email_user_verified_subject: 'Váš účet byl schválen pro interní verzi',
+    auth_email_user_blocked_header: 'Váš účet neprošel schvalovacím procesem',
+    auth_email_user_blocked_instructions:
+      'Stále můžete procházet všechny veřejně přístupné inovace. Pokud se jedná o chybu, můžete nás kontaktovat.',
+    auth_email_user_blocked_subject:
+      'Váš účet nebyl schválen pro interní verzi',
     auth_error_email_not_verified:
       "We've sent you an email link to activate your account, then it will be possible to log in.",
     auth_error_user_not_found: 'No account found with that e-mail adress.',
@@ -380,6 +411,7 @@ module.exports = {
     button_send: 'send',
     button_unblock: 'Unblock',
     button_login: 'Log In',
+    button_contact_us: 'Kontaktujte nás',
     button_verify: 'Verify',
     button_register: 'Register',
     contact_author_of_project: 'Author of project',
@@ -387,22 +419,20 @@ module.exports = {
     contact_to_authors: 'Contact to authors',
     contents: 'Content',
     contents_about_link: 'About ŠKODA AUTO Logistics',
-    locked: 'Innovation is not avaible for public',
+    locked: 'The innovation is not open to the public.',
     login: 'Log In',
     logout: 'Log out',
-    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
+    innovation_content_not_allowed_header:
+      'Your account is currently in authorization',
     innovation_content_not_allowed_perex:
-      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
+      'We will inform you via email about the authorization and you will gain access to all innovations then',
     innovation_content_not_registered_header:
-      'Pro přístup k dalšímu obsahu se zaregistrujte nebo přihlašte',
+      'To get the access to further content, get registered or log in',
     innovation_content_not_registered_perex:
-      'Pokud se budete registrovat, tak Váš účet budeme ještě schvalovat. Poté budete mít přístup ke všem inovacím.',
+      'We will authorize your account after the registration. Then you will have access to all innovations.',
     innovation_content_blocked_header: 'Litujeme, Váš účet nebyl schválen',
     innovation_content_blocked_perex:
       'Stále můžete procházet všechny veřejně přístupné inovace',
-    innovation_content_not_allowed_header: 'Váš účet právě schvalujeme',
-    innovation_content_not_allowed_perex:
-      'O schválení Vás budeme informovat na Váš e-mail, poté zíkáte přístup ke všem inovacím.',
     navbar_download_label: 'Download PDF',
     navbar_search_label: 'Search',
     navbar_search_no_results: 'No results found',
@@ -416,6 +446,8 @@ module.exports = {
     sidebar_benefits: 'Benefits',
     sidebar_download_label: 'Download',
     sidebar_motivation: 'Motivation',
+    page_title: 'Inovační brožura Logistiky ŠKODA AUTO',
+    page_title_about: 'O Logistice ŠKODA AUTO',
     unauthorized: 'Your account is unauthorized.',
   },
 };
