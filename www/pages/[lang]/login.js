@@ -36,9 +36,12 @@ const Login = () => {
         // TODO: add hash
         password: values.password,
       });
+      console.log(window.location.host.match(new RegExp(`^(www\.)?(.*)`))[2]);
 
       setCookie(null, 'userData', userData.data, {
+        maxAge: 60 * 60 * 24 * 365,
         sameSite: true,
+        // domain: window.location.host.match(new RegExp(`^(www\.)?(.*)`))[2],
         secure: true,
         path: '/',
       });

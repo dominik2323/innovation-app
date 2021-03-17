@@ -14,9 +14,9 @@ const InnovationUiSidebarDetailFiles = () => {
   return (
     <div className={`${classNamePrefix}`}>
       <h3>{components.sidebar_download_label}</h3>
-      {download.map(({ file, filename }, i) => (
+      {download.map(({ file = null, filename = null }, i) => (
         <a target={`_blank`} href={file.url} key={filename + i}>
-          {`${filename} (${filename.split('.').pop()})`}
+          {`${filename} (${filename?.split('.').pop()})`}
         </a>
       ))}
     </div>

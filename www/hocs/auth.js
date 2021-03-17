@@ -51,7 +51,10 @@ export const AuthProvider = ({ children }) => {
         isBlocked: metaData?.isBlocked,
         isLoading,
         logout: () => {
-          destroyCookie({}, 'userData', { path: `/` });
+          destroyCookie({}, 'userData', {
+            path: `/`,
+            domain: window.location.host.match(new RegExp(`^(www\.)?(.*)`))[2],
+          });
           Router.push(`/${lang}/login`);
         },
       }}
