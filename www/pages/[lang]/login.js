@@ -41,7 +41,7 @@ const Login = () => {
       setCookie(null, 'userData', userData.data, {
         maxAge: 60 * 60 * 24 * 365,
         sameSite: true,
-        // domain: window.location.host.match(new RegExp(`^(www\.)?(.*)`))[2],
+        domain: window.location.host.match(new RegExp(`^(www\.)?(.*)`))[2],
         secure: true,
         path: '/',
       });
